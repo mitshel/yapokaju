@@ -1,0 +1,30 @@
+{% extends 'account/event_create.html' %}
+
+
+{% block form_media %}
+{{ form.media }}
+<script>
+    $(document).ready(function () {
+        var currentStep = '{{ form.prefix }}';
+
+        new Cleave('#id_' + currentStep + '-date', {
+            date: true,
+            datePattern: ['Y', 'm', 'd'],
+            delimiter: '-'
+        });
+        new Cleave('#id_' + currentStep + '-time', {
+            time: true,
+            timePattern: ['h', 'm']
+        });
+
+        $('.datepicker').datepicker({
+            format: 'yyyy-mm-dd',
+        });;
+    });
+</script>
+{% endblock form_media %}
+
+
+{% block form %}
+{% include 'betterforms/form_as_fieldsets.html' %}
+{% endblock form %}

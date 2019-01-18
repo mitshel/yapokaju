@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load i18n widget_tweaks %}
+
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-3 pt-3">
+            {% include 'account/sidebar.html' %}
+        </div>
+        <div class="col-9 pt-3">
+            <h2>Настройки профиля</h2>
+
+            <div class="mt-3"
+                 style="max-width: 400px;">
+                <form action=""
+                      method="post">
+                    <div>
+                        {% csrf_token %}
+                        {% for field in forms.profile %}
+                        <div class="form-group">
+                            {{ field.label_tag }}
+                            {% render_field field class+="form-control" %}
+                            {% if field.help_text %}
+                            <span class="form-text text-muted">{{ field.help_text }}</span>
+                            {% endif %}
+                            {% for error in field.errors %}
+                            <span class="form-text text-danger"></span>
+                            {% endfor %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <button class="btn btn-primary"
+                            type="submit"
+                            name="action"
+                            value="profile">{% trans 'Save' %}</button>
+                </form>
+                <form action=""
+                      method="post">
+                    <div class="mt-4">
+                        <h5>Изменить пароль</h5>
+                        {% csrf_token %}
+                        {% for field in forms.password %}
+                        <div class="form-group">
+                            {{ field.label_tag }}
+                            {% render_field field class+="form-control" %}
+                            {% if field.help_text %}
+                            <span class="form-text text-muted">{{ field.help_text }}</span>
+                            {% endif %}
+                            {% for error in field.errors %}
+                            <span class="form-text text-danger"></span>
+                            {% endfor %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <button class="btn btn-primary"
+                            type="submit"
+                            name="action"
+                            value="password">{% trans 'Change password' %}</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

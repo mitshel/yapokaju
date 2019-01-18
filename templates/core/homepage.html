@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+{% load thumbnail %}
+
+
+{% block content %}
+<style>
+.section-upcoming-events .tabs__navigation {
+    background: #2f2f2f;
+    list-style: none;
+    margin-bottom: 0;
+    padding: 0;
+}
+.section-upcoming-events .tabs__item {
+    border-bottom: 1px solid #575757;
+    padding: 25px 0;
+}
+.section-upcoming-events .tabs__item a:hover {
+    text-decoration: none;
+}
+.section-upcoming-events .tabs__item:last-child {
+    border-bottom: none;
+}
+.section-upcoming-events .tabs__item::after {
+    display: block;
+    content: "";
+    clear: both;
+}
+.section-upcoming-events .tabs__item-date {
+    background: #ff1949;
+    color: #ffffff;
+    float: left;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    padding: 5px 0;
+    text-align: center;
+    width: 115px;
+}
+.section-upcoming-events .tabs__item-day {
+    font-weight: 600;
+    display: block;
+    font-size: 1.75em;
+}
+.section-upcoming-events .tabs__item-title {
+    color: #ffffff;
+    margin-left: 140px;
+    margin-right: 25px;
+}
+.section-upcoming-events .tabs__item a:hover h4 {
+    color: #ff1949;
+}
+.section-upcoming-events .tabs__item-title p {
+    color: #aaaaaa;
+    font-size: .9em;
+    margin: 0;
+}
+.section-upcoming-events .tabs__panel {
+    height: 100%;
+    padding: 25px;
+    position: relative;
+}
+.section-upcoming-events .tabs__panel:before {
+    background: rgba(0, 0, 0, 0.3);
+    content: "";
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+}
+.section-upcoming-events .tabs__panel-background {
+    background-size: cover;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+.section-upcoming-events .tabs__panel-title {
+    bottom: 25px;
+    color: #ffffff;
+    display: block;
+    font-size: 42px;
+    font-weight: 600;
+    line-height: 42px;
+    margin: 0;
+    min-height: 96px;
+    position: absolute;
+    z-index: 105;
+}
+</style>
+<section></section>
+<section class="section-upcoming-events">
+    <div class="section-wrapper">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-header__text">Предстоящие события</h2>
+            </div>
+            <div class="tabs row">
+                <div class="col-4">
+                    <ul class="tabs__navigation">
+                        {% for event in upcoming_event_list %}
+                        <li class="tabs__item">
+                            <a href="#upcoming-event-{{ event.id }}">
+                                <div class="tabs__item-date">
+                                    <span class="tabs__item-day">{{ event.datetime|date:"d" }}</span>
+                                    {{ event.datetime|date:"N Y" }}
+                                </div>
+                                <div class="tabs__item-title">
+                                    <h4>{{ event.get_type_display }}</h4>
+                                    <p>{{ event.name }}</p>
+                                </div>
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="tabs__panel-container col-8">
+                    {% for event in upcoming_event_list %}
+                    <div id="upcoming-event-{{ event.id }}"
+                         class="tabs__panel">
+                        {% if event.image %}
+                        {% thumbnail event.image "730x384" crop='center' as im %}
+                        <div class="tabs__panel-background"
+                             style="background-image: url({{ im.url }});"></div>
+                        {% endthumbnail %}
+
+                        {% comment %}
+                        Сделать круглый аватар организатора.
+                        Написать количество поданых заявок.
+                        Возможно добавить в избранное.
+                        {% endcomment %}
+
+                        {% endif %}
+                        <h3 class="tabs__panel-title">{{ event.name }}</h3>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

@@ -1,0 +1,26 @@
+{% extends 'account/event_create.html' %}
+{% load widget_tweaks %}
+
+
+{% block form_media %}
+{{ form.media }}
+<script>
+    $(document).ready(function () {
+        var currentStep = '{{ form.prefix }}';
+
+        $(document.body).rrule({
+            prefix: 'id_' + currentStep + '-',
+        });
+
+        new Cleave('#id_' + currentStep + '-time', {
+            time: true,
+            timePattern: ['h', 'm']
+        });
+    });
+</script>
+{% endblock form_media %}
+
+
+{% block form %}
+{% include 'betterforms/form_as_fieldsets.html' %}
+{% endblock form %}

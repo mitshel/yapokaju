@@ -1,0 +1,9 @@
+{% with fieldset_template_name="betterforms/fieldset_as_div.html" field_template_name="betterforms/field_as_div.html" %}
+    {% for thing in form %}
+        {% if thing.is_fieldset %}
+            {% include fieldset_template_name with fieldset=thing %}
+        {% else %}
+            {% include field_template_name with field=thing %}
+        {% endif %}
+    {% endfor %}
+{% endwith %}

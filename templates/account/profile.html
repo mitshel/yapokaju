@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load thumbnail %}
+
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-3 pt-3">
+            {% include 'account/sidebar.html' %}
+        </div>
+        <div class="col-9 pt-3">
+            <h2>Мой профиль</h2>
+        </div>
+    </div>
+</div>
+{% endblock content %}
