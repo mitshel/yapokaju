@@ -22,11 +22,8 @@ class ProfileForm(forms.ModelForm):
 class EventCreateStepFirstForm(BetterModelForm):
     class Meta(object):
         model = Event
-        fields = ('name', 'type', 'description', 'recursive')
+        fields = ('template', 'recursive')
         widgets = {
-            'description': widgets.Textarea(attrs={
-                'rows': 7,
-            }),
             'recursive': widgets.RadioSelect(choices=[
                 (False, 'Нет'),
                 (True, 'Да')

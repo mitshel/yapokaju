@@ -31,10 +31,10 @@
                     {% for event in object_list %}
                     <tr>
                         <th>
-                            <a href="{% url 'profile_event_detail' event.id %}">{{ event.name }}</a>
+                            <a href="{% url 'profile_event_detail' event.id %}">{{ event.template.name }}</a>
                         </th>
                         <td>{{ event.datetime }}</td>
-                        <td>{{ event.get_type_display }}</td>
+                        <td>{{ event.template.get_type_display }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>

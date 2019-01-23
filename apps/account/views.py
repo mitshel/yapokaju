@@ -124,9 +124,7 @@ class ProfileEventCreateView(LoginRequiredMixin, SessionWizardView):
     def done(self, form_list, **kwargs):
         main_step_cleaned_data = self.get_cleaned_data_for_step('main')
 
-        event = Event.objects.create(name=main_step_cleaned_data['name'],
-                                     description=main_step_cleaned_data['description'],
-                                     type=main_step_cleaned_data['type'],
+        event = Event.objects.create(template=main_step_cleaned_data['template'],
                                      recursive=main_step_cleaned_data['recursive'],
                                      user=self.request.user)
 

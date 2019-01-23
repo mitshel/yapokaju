@@ -1,21 +1,25 @@
+from django.db.models import Q
+from django.forms.widgets import HiddenInput
+from django.http.response import HttpResponseRedirect
 from django.utils import timezone
 from django.views.generic import TemplateView
 from django.views.generic.base import TemplateResponseMixin
+from django.views.generic.detail import SingleObjectMixin
 from django.views.generic.edit import ProcessFormView
 
-from apps.clndr.models import Event
+from apps.clndr.models import Event, EventDatetime, EventFeedback, Member
+from apps.core.forms import EventFeedbackForm, EventSingUpForm
 
 from .mixins import MultiFormMixin
 
 
 # Create your views here.
 class ProcessMultipleFormsView(ProcessFormView):
-    
     def get(self, request, *args, **kwargs):
         form_classes = self.get_form_classes()
         forms = self.get_forms(form_classes)
         return self.render_to_response(self.get_context_data(forms=forms))
-     
+
     def post(self, request, *args, **kwargs):
         form_classes = self.get_form_classes()
         form_name = request.POST.get('action')
@@ -25,13 +29,13 @@ class ProcessMultipleFormsView(ProcessFormView):
             return self._process_grouped_forms(form_name, form_classes)
         else:
             return self._process_all_forms(form_classes)
-        
+
     def _individual_exists(self, form_name):
         return form_name in self.form_classes
-    
+
     def _group_exists(self, group_name):
         return group_name in self.grouped_forms
-              
+  
     def _process_individual_form(self, form_name, form_classes):
         forms = self.get_forms(form_classes, (form_name,))
         form = forms.get(form_name)
@@ -41,7 +45,7 @@ class ProcessMultipleFormsView(ProcessFormView):
             return self.forms_valid(forms, form_name)
         else:
             return self.forms_invalid(forms)
-        
+
     def _process_grouped_forms(self, group_name, form_classes):
         form_names = self.grouped_forms[group_name]
         forms = self.get_forms(form_classes, form_names)
@@ -49,21 +53,21 @@ class ProcessMultipleFormsView(ProcessFormView):
             return self.forms_valid(forms)
         else:
             return self.forms_invalid(forms)
-        
+
     def _process_all_forms(self, form_classes):
         forms = self.get_forms(form_classes, None, True)
         if all([form.is_valid() for form in forms.values()]):
             return self.forms_valid(forms)
         else:
             return self.forms_invalid(forms)
- 
- 
+
+
 class BaseMultipleFormsView(MultiFormMixin, ProcessMultipleFormsView):
     """
     A base view for displaying several forms.
     """
- 
- 
+
+
 class MultiFormsView(TemplateResponseMixin, BaseMultipleFormsView):
     """
     A view for displaying several forms, and rendering a template response.
@@ -76,16 +80,78 @@ class HomepageView(TemplateView):
     def get_context_data(self, **kwargs):
         now = timezone.now()
 
+        event_list = Event.objects.all()
         self.extra_context = {
-            'upcoming_event_list': Event.objects.all()[:3]
+            'upcoming_event_list': event_list[:3],
+            'event_list': event_list
         }
 
         return super(HomepageView, self).get_context_data(**kwargs)
 
 
-class MyProfileView(TemplateView):
-    template_name = 'core/profile.html'
+class EventDetailView(SingleObjectMixin, MultiFormsView):
+    form_classes = {
+        'singup': EventSingUpForm,
+        'feedback': EventFeedbackForm
+    }
 
+    template_name = 'core/event_detail.html'
+    extra_context = {}
 
-class MyProfileSettingsView(TemplateView):
-    template_name = 'core/profile_settings.html'
+    queryset = Event.objects.all()
+
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.extra_context.update({
+            'object': self.object
+        })
+        return super(EventDetailView, self).get(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.extra_context.update({
+            'object': self.object
+        })
+        return super(EventDetailView, self).post(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context_data = super(EventDetailView, self).get_context_data(**kwargs)
+
+        context_data['show_singup_form'] = not Member.objects \
+            .filter(user_id=self.request.user.id,
+                    event=self.object,
+                    datetime__datetime__gte=self.object.datetime)
+        context_data['feedback_list'] = EventFeedback.objects \
+            .filter(Q(event=self.object), Q(show=True) | Q(show=False, user_id=self.request.user.id))
+                 
+        return context_data
+
+    def create_singup_form(self, **kwargs):
+        obj = self.get_object()
+        form_class = self.form_classes['singup']
+        form = form_class(**kwargs)
+
+        datetime_queryset = EventDatetime.objects.filter(datetime__gte=obj.datetime,
+                                                         event=obj)
+        form.fields['datetime'].queryset = datetime_queryset
+        if len(datetime_queryset) == 1:
+            form.fields['datetime'].initial = datetime_queryset[0]
+            form.fields['datetime'].widget = HiddenInput()
+
+        return form
+
+    def singup_form_valid(self, form):
+        datetime = form.cleaned_data['datetime']
+
+        member = Member.objects.create(user=self.request.user,
+                                       event=self.object,
+                                       datetime=datetime)
+        return HttpResponseRedirect(self.object.get_absolute_url())
+
+    def feedback_form_valid(self, form):
+        text = form.cleaned_data['text']
+
+        EventFeedback.objects.create(user=self.request.user,
+                                     event=self.object,
+                                     text=text)
+        return HttpResponseRedirect(self.object.get_absolute_url())

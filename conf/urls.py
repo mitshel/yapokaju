@@ -19,7 +19,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 
-from apps.core.views import HomepageView, MyProfileView
+from apps.core.views import EventDetailView, HomepageView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -36,5 +36,6 @@ if settings.DEBUG:
 
 urlpatterns += i18n_patterns(
     path('', HomepageView.as_view(), name='homepage'),
+    path('events/<int:pk>/', EventDetailView.as_view(), name='event_detail'),
     path('accounts/', include('apps.account.urls')),
 )
