@@ -10,31 +10,13 @@
     .section-event-detail-header_bd-image h1 {
         color: #ffffff;
     }
-    .section-bg {
-        background-size: cover;
-        height: 100%;
-        position: absolute;
-        top: 0;
-        width: 100%;
-        z-index: -2;
-    }
-    .section-bg:before {
-        background: rgba(0, 0, 0, 0.6);
-        content: "";
-        height: 100%;
-        left: 0;
-        position: absolute;
-        top: 0;
-        width: 100%;
-        z-index: -1;
-    }
+    
 </style>
 
 <section class="section-event-detail-header {% if object.template.image %}section-event-detail-header_bd-image{% endif %}">
     {% thumbnail object.template.image.file "1366x196" crop='center' as im %}
     <div class="section-bg"
          style="background-image: url({{ im.url }});"></div>
-    <div class="section-bg-overlay"></div>
     {% endthumbnail %}
     <div class="section-wrapper">
         <div class="container">
@@ -68,11 +50,12 @@
                         </div>
                     </div>
                     {% endif %}
+                    {% if user.is_authenticated %}
                     <div class="mb-4">
                         <div class="h3">Написать отзыв</div>
                         <div>
                             <form action=""
-                                  method="POST">
+                                  method="post">
                                 {% csrf_token %}
                                 {% for field in forms.feedback %}
                                     {% if field.is_hidden %}
@@ -96,6 +79,7 @@
                             </form>
                         </div>
                     </div>
+                    {% endif %}
                     <div class="mb-4">
                         <div class="h3">Отзывы о мероприятии:</div>
                         <div>

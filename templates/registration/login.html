@@ -4,33 +4,37 @@
 {% block title %}{% trans "Log in" %}{% endblock %}
 
 {% block content %}
-<div style="width: 340px; margin: 0 auto; margin-top: 75px;">
-    <div class="card mb-4 shadow-sm">
-        <div class="card-body">
-            <h4 class="mb-3 font-weight-normal">Log in to your account</h4>
-            <form method="post"
-                  action="">
-                {% csrf_token %}
-                {% for field in form %}
-                <div class="form-group">
-                    {{ field.label_tag }}
-                    {% render_field field class+="form-control" %}
+<section>
+    <div class="section-wrapper">
+        <div style="width: 340px; margin: 0 auto;">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h4 class="mb-3 font-weight-normal">Log in to your account</h4>
+                    <form method="post"
+                        action="">
+                        {% csrf_token %}
+                        {% for field in form %}
+                        <div class="form-group">
+                            {{ field.label_tag }}
+                            {% render_field field class+="form-control" %}
+                        </div>
+                        {% endfor %}
+                        <input type="hidden" name="next" value="{{ next }}" />
+                        <button class="btn btn-block btn-primary"
+                                type="submit">{% trans 'Log in' %}</button>
+                    </form>
                 </div>
-                {% endfor %}
-                <input type="hidden" name="next" value="{{ next }}" />
-                <button class="btn btn-block btn-primary"
-                        type="submit">{% trans 'Log in' %}</button>
-            </form>
-        </div>
-        <div class="card-body bg-light">
-            <a class="btn btn-block btn-outline-primary bg-white text-primary"
-               href="{% url 'registration_register' %}">{% trans "Register" %}</a>
-            <div class="mt-3 text-center">
-                <a href="{% url 'auth_password_reset' %}">{% trans "Forgot your password?" %}</a>
+                <div class="card-body bg-light">
+                    <a class="btn btn-block btn-outline-primary bg-white text-primary"
+                    href="{% url 'registration_register' %}">{% trans "Register" %}</a>
+                    <div class="mt-3 text-center">
+                        <a href="{% url 'auth_password_reset' %}">{% trans "Forgot your password?" %}</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</section>
 {% endblock %}
 
 

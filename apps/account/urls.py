@@ -5,7 +5,8 @@ from .views import (ProfileEventCreateView, ProfileEventListView,
                     ProfileSettingsView, ProfileView)
 
 urlpatterns = [
-    path('', include('registration.backends.simple.urls')),
+    path('', include('registration.backends.default.urls')),
+
     path('profile/', include([
         path('', ProfileView.as_view(), name='profile'),
         path('settings/', ProfileSettingsView.as_view(), name='profile_settings'),

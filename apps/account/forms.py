@@ -6,10 +6,44 @@ from django import forms
 from django.contrib.auth.forms import PasswordChangeForm, UserChangeForm
 from django.forms import widgets
 from django.utils import timezone
+from django.utils.text import capfirst
+from django.utils.translation import ugettext_lazy as _
+from registration.forms import RegistrationForm as BaseRegistrationForm
 
 from apps.clndr.models import Event
 
 from .models import User
+
+
+class RegistrationForm(BaseRegistrationForm):
+    first_name = forms.CharField(label=capfirst(_('first name')), max_length=32)
+    last_name = forms.CharField(label=capfirst(_('last name')), max_length=32)
+    password1 = forms.CharField(
+        label=_("Password"),
+        strip=False,
+        widget=widgets.PasswordInput,
+        help_text=' '.join([
+            'Ваш пароль должен содержать как минимум 8 символов',
+            'и не должен состоять только из цифр.'
+        ])
+    )
+    is_volunteer = forms.BooleanField(label='Я волонтер', help_text='Могу организовывать и проводить мероприятия.')
+
+    def __init__(self, *args, **kwargs):
+        super(RegistrationForm, self).__init__(*args, **kwargs)
+        self.fields.move_to_end('email')
+        self.fields.move_to_end('is_volunteer')
+        self.fields.move_to_end('password1')
+        self.fields.move_to_end('password2')
+
+    def save(self, commit=True):
+        user = super(RegistrationForm, self).save(commit=False)
+        user.first_name = self.cleaned_data['first_name']
+        user.last_name = self.cleaned_data['last_name']
+        user.is_volunteer = self.cleaned_data['is_volunteer']
+        
+        return super(RegistrationForm, self).save()
+
 
 
 class ProfileForm(forms.ModelForm):

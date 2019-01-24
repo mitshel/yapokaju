@@ -33,6 +33,7 @@ class UserAdmin(BaseUserAdmin):
         (_('Permissions'), {
             'fields': (
                 'is_active',
+                'is_volunteer',
                 'is_staff',
                 'is_superuser',
                 'groups',

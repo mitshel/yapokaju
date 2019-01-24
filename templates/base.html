@@ -36,9 +36,37 @@
             font-family: 'Montserrat', sans-serif;
         }
         section {
-            padding: 70px 0;
+            position: relative;
+            
+        }
+        .section-wrapper {
+            padding: 50px 0;
+        }
+        .section-bg {
+            background-size: cover;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            z-index: -2;
+        }
+        .section-bg:before {
+            background: rgba(0, 0, 0, 0.6);
+            content: "";
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            z-index: -1;
+        }
+        .section-bg.overlay-light:before {
+            background: rgba(255, 255, 255, 0.4); /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0)); /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
         }
         .section-footer {
+            background: #2f2f2f;
             padding-bottom: 0;
         }
         .section-header {
@@ -47,25 +75,38 @@
         .section-header__text {
             font-weight: 600;
         }
+        .navbar {
+            position: relative;
+            z-index: 1000;
+        }
+        .bg-dark {
+            background-color: rgba(52, 58, 64, 0.9) !important;
+        }
+        .nav-link {
+            line-height: 40px;
+        }
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-md navbar-light bg-light mb-4">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="#">Top navbar</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
-                aria-expanded="false" aria-label="Toggle navigation">
+            <a class="navbar-brand"
+               href="{% url 'homepage' %}">Я Покажу</a>
+            <button class="navbar-toggler"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#navbarCollapse"
+                    aria-controls="navbarCollapse"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="collapse navbar-collapse"
+                 id="navbarCollapse">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
                         <a class="nav-link"
                            href="{% url 'homepage' %}">Главная</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link"
-                           href="{% url 'homepage' %}">О нас</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav">
@@ -95,7 +136,9 @@
     {% block content %}{% endblock content %}
     <section class="section-footer">
         <div class="section-wrapper">
-            <div style="height: 250px; background: #2f2f2f;"></div>
+            <div class="container">
+                <div class="text-white">{% now 'Y' %}</div>
+            </div>
         </div>
     </section>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"

@@ -46,8 +46,8 @@ USER_EMAIL_UNIQUE_ERR = _("A user with that email address already exists.")
 class User(TimestampsMixin, AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_('email address'), default='', unique=True,
                               error_messages={'unique': USER_EMAIL_UNIQUE_ERR})
-    first_name = models.CharField(_('first name'), max_length=32, default='', blank=False)
-    last_name = models.CharField(_('last name'), max_length=32, default='', blank=False)
+    first_name = models.CharField(_('first name'), max_length=32, default='')
+    last_name = models.CharField(_('last name'), max_length=32, default='')
     is_active = models.BooleanField(_('active'), default=True,
                                     help_text=_(
                                         'Designates whether this user should be treated as active. '

@@ -167,3 +167,25 @@ if DJANGO_STATIC:
     STATICFILES_DIRS = [
         os.path.join(BASE_DIR, 'static'),
     ]
+
+
+# https://docs.djangoproject.com/en/2.1/topics/email/#smtp-backend
+
+EMAIL_HOST = "smtp.beget.com"
+
+EMAIL_HOST_USER = "demo@launchweb.ru"
+
+EMAIL_HOST_PASSWORD = "mQS8sv%o"
+
+EMAIL_PORT = 465
+
+EMAIL_USE_SSL = True
+
+SERVER_EMAIL = "demo@launchweb.ru"
+
+DEFAULT_FROM_EMAIL = "demo@launchweb.ru"
+
+
+ACCOUNT_ACTIVATION_DAYS = 3
+
+REGISTRATION_FORM = 'apps.account.forms.RegistrationForm'

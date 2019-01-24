@@ -9,6 +9,7 @@ from django.urls import reverse_lazy
 from django.utils import timezone
 from django.views.generic import FormView, ListView, TemplateView
 from formtools.wizard.views import SessionWizardView
+from registration.views import RegistrationView as BaseRegistrationView
 
 from apps.clndr.models import Event, EventDatetime
 from apps.core.views import MultiFormsView

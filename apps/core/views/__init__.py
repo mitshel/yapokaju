@@ -7,6 +7,7 @@ from django.views.generic.base import TemplateResponseMixin
 from django.views.generic.detail import SingleObjectMixin
 from django.views.generic.edit import ProcessFormView
 
+from apps.account.forms import RegistrationForm
 from apps.clndr.models import Event, EventDatetime, EventFeedback, Member
 from apps.core.forms import EventFeedbackForm, EventSingUpForm
 
@@ -74,7 +75,11 @@ class MultiFormsView(TemplateResponseMixin, BaseMultipleFormsView):
     """
 
 
-class HomepageView(TemplateView):
+class HomepageView(MultiFormsView):
+    form_classes = {
+        'registration': RegistrationForm,
+    }
+
     template_name = 'core/homepage.html'
 
     def get_context_data(self, **kwargs):
