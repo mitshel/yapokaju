@@ -7,20 +7,26 @@
     section {
         position: relative;
     }
-    .section-event-detail-header_bd-image h1 {
+    .section-event-detail-header .section-wrapper {
+        padding-bottom: 0;
+    }
+    .section-event-detail-header_bd-image h1,
+    .section-event-detail-header_bd-image .short_description {
         color: #ffffff;
     }
-    
 </style>
 
 <section class="section-event-detail-header {% if object.template.image %}section-event-detail-header_bd-image{% endif %}">
-    {% thumbnail object.template.image.file "1366x196" crop='center' as im %}
-    <div class="section-bg"
-         style="background-image: url({{ im.url }});"></div>
-    {% endthumbnail %}
     <div class="section-wrapper">
         <div class="container">
-            <h1>{{ object.template.name }}</h1>
+            {% thumbnail object.template.image.file "1366x196" crop='center' as im %}
+            <div class="container-bg"
+                style="background-image: url({{ im.url }});"></div>
+            {% endthumbnail %}
+            <div class="section-body ml-3">
+                <h1 class="pt-6 pb-4">{{ object.template.name }}</h1>
+                <div class="short_description pb-5">{{ object.template.short_description }}</div>
+            </div>
         </div>
     </div>
 </section>
@@ -30,79 +36,20 @@
             <div class="row">
                 <div class="col-8">
                     <div class="mb-4">
-                        <div class="h3">Описание мероприятия</div>
-                        {{ object.template.description }}
-                    </div>
-                    {% if object.template.images.all|length > 1 %}
-                    <div class="mb-4">
-                        <div class="h3">Галерея</div>
-                        <div class="owl-carousel">
-                            {% for image in object.template.images.all %}
-                                {% thumbnail image.file "240x159" crop='center' as im %}
-                                <a class="fancybox"
-                                    href="{{ image.file.url }}"
-                                    title="{{ image.alt }}">
-                                    <img src="{{ im.url }}"
-                                         alt="{{ image.alt }}" />
-                                </a>
-                                {% endthumbnail %}
-                            {% endfor %}
+                        <div class="h3">О мероприятии</div>
+                        {{ object.template.description|safe }}
+                        {% if object.comment %}
+                        <div class="bg-light py-4 px-3 mt-3">
+                            <div class="h5">Комментарий организатора</div>
+                            {{ object.comment }}
                         </div>
-                    </div>
-                    {% endif %}
-                    {% if user.is_authenticated %}
-                    <div class="mb-4">
-                        <div class="h3">Написать отзыв</div>
-                        <div>
-                            <form action=""
-                                  method="post">
-                                {% csrf_token %}
-                                {% for field in forms.feedback %}
-                                    {% if field.is_hidden %}
-                                        {{ field }}
-                                    {% else %}
-                                    <div class="form-group">
-                                        {{ field.label_tag }}
-                                        {% render_field field class+="form-control" %}
-                                        {% if field.help_text %}
-                                        <span class="form-text text-muted">{{ field.help_text }}</span>
-                                        {% endif %}
-                                    </div>
-                                    {% endif %}
-                                {% endfor %}
-                                <div class="form-group mb-0">
-                                    <button class="btn btn-success btn-block" 
-                                        type="submit"
-                                        name="action"
-                                        value="feedback">Отправить</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    {% endif %}
-                    <div class="mb-4">
-                        <div class="h3">Отзывы о мероприятии:</div>
-                        <div>
-                            {% for feedback in feedback_list %}
-                            <div class="card mt-4">
-                                <div class="card-body">
-                                    {% if not feedback.show %}
-                                    <p>Ваш отзыв на модерации</p>
-                                    {% endif %}
-                                    <h5 class="mt-0">{{ feedback.user.get_full_name }}</h5>
-                                    <p>{{ feedback.created_at }}</p>
-                                    <p class="my-0">{{ feedback.text }}</p>
-                                </div>
-                            </div>
-                            {% empty %}
-                            <p>Нет отзывов</p>
-                            {% endfor %}
-                        </div>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="col-4">
                     {% if not user.is_authenticated %}
-                    <p><a href="{% url 'registration_register' %}">Зарегестрируйтесь</a>, чтобы записаться на мероприятие.</p>
+                    <p><a href="{% url 'auth_login' %}">Войдите</a> в свою учетную запись,
+                        чтобы записаться на мероприятие.</p>
                     {% elif show_singup_form %}
                     <div class="card">
                         <div class="card-body">
@@ -132,6 +79,114 @@
                     {% else %}
                     <p>Вы уже зарегестрированны на данное мероприятие</p>
                     {% endif %}
+                    {% if object.restrictions.exists %}
+                    <div class="h5 mt-4">Ограничения</div>
+                    <ul>
+                        {% for restriction in object.restrictions.all %}
+                        <li>{{ restriction }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% if object.template.images.all|length > 1 %}
+<section>
+    <div class="section-wrapper pt-0">
+        <div class="container">
+            <div class="section-header mb-3">
+                <h3>Галерея</h3>
+            </div>
+            <div class="section-body">
+                <div class="owl-carousel">
+                    {% for image in object.template.images.all %}
+                        {% thumbnail image.file "340x225" crop='center' as im %}
+                        <div style="padding: 0 15px;">
+                            <a class="fancybox"
+                                href="{{ image.file.url }}"
+                                title="{{ image.alt }}">
+                                <img src="{{ im.url }}"
+                                        alt="{{ image.alt }}" />
+                            </a>
+                        </div>
+                        {% endthumbnail %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{% if user.is_authenticated %}
+<section>
+    <div class="section-wrapper pt-0">
+        <div class="container">
+            <div class="section-header mb-3">
+                <h3>Написать отзыв</h3>
+            </div>
+            <div class="section-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div>
+                            <form action=""
+                                    method="post">
+                                {% csrf_token %}
+                                {% for field in forms.feedback %}
+                                    {% if field.is_hidden %}
+                                        {{ field }}
+                                    {% else %}
+                                    <div class="form-group">
+                                        {{ field.label_tag }}
+                                        {% render_field field class+="form-control" %}
+                                        {% if field.help_text %}
+                                        <span class="form-text text-muted">{{ field.help_text }}</span>
+                                        {% endif %}
+                                    </div>
+                                    {% endif %}
+                                {% endfor %}
+                                <div class="form-group mb-0">
+                                    <button class="btn btn-success btn-block" 
+                                        type="submit"
+                                        name="action"
+                                        value="feedback">Отправить</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+<section>
+    <div class="section-wrapper pt-0">
+        <div class="container">
+            <div class="section-header mb-3">
+                <h3>Отзывы о мероприятии:</h3>
+            </div>
+            <div class="section-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        {% for feedback in feedback_list %}
+                        <div class="card border-0 rounded-0 mb-4 {% if not feedback.show %}bg-warning{% else %}bg-light{% endif %}">
+                            <div class="card-body">
+                                <p class="card-text">{{ feedback.text }}</p>
+                                <p class="card-text font-italic">
+                                    {{ feedback.created_at|date:"d N Y г." }} - {{ feedback.user.get_full_name }}
+                                    {% if not feedback.show %}
+                                    (ваш отзыв на модерации)
+                                    {% endif %}
+                                </p>
+                            </div>
+                        </div>
+                        {% empty %}
+                        <p>Нет отзывов</p>
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
         </div>

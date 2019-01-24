@@ -1,7 +1,7 @@
 from django.contrib import admin
 
-from .models import (Event, EventDatetime, EventFeedback, Member, Template,
-                     TemplateImage)
+from .models import (Event, EventDatetime, EventFeedback, Member, Restriction,
+                     Template, TemplateImage)
 
 
 # Register your models here.
@@ -42,3 +42,4 @@ admin.site.register(Template, TemplateAdmin)
 
 admin.site.register(Member)
 admin.site.register(EventFeedback)
+admin.site.register(Restriction)

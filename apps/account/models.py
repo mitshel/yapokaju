@@ -48,6 +48,7 @@ class User(TimestampsMixin, AbstractBaseUser, PermissionsMixin):
                               error_messages={'unique': USER_EMAIL_UNIQUE_ERR})
     first_name = models.CharField(_('first name'), max_length=32, default='')
     last_name = models.CharField(_('last name'), max_length=32, default='')
+    phone = models.CharField('номер телефона', max_length=32, default='', blank=True)
     is_active = models.BooleanField(_('active'), default=True,
                                     help_text=_(
                                         'Designates whether this user should be treated as active. '

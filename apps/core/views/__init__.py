@@ -10,6 +10,7 @@ from django.views.generic.edit import ProcessFormView
 from apps.account.forms import RegistrationForm
 from apps.clndr.models import Event, EventDatetime, EventFeedback, Member
 from apps.core.forms import EventFeedbackForm, EventSingUpForm
+from apps.core.utils import clear_phone
 
 from .mixins import MultiFormMixin
 
@@ -85,7 +86,7 @@ class HomepageView(MultiFormsView):
     def get_context_data(self, **kwargs):
         now = timezone.now()
 
-        event_list = Event.objects.all()
+        event_list = Event.objects.get_custom_queryset()
         self.extra_context = {
             'upcoming_event_list': event_list[:3],
             'event_list': event_list
@@ -103,7 +104,7 @@ class EventDetailView(SingleObjectMixin, MultiFormsView):
     template_name = 'core/event_detail.html'
     extra_context = {}
 
-    queryset = Event.objects.all()
+    queryset = Event.objects.get_custom_queryset()
 
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()
@@ -143,6 +144,8 @@ class EventDetailView(SingleObjectMixin, MultiFormsView):
             form.fields['datetime'].initial = datetime_queryset[0]
             form.fields['datetime'].widget = HiddenInput()
 
+        form.fields['phone'].initial = self.request.user.phone
+
         return form
 
     def singup_form_valid(self, form):
@@ -151,6 +154,11 @@ class EventDetailView(SingleObjectMixin, MultiFormsView):
         member = Member.objects.create(user=self.request.user,
                                        event=self.object,
                                        datetime=datetime)
+
+        phone = clear_phone(form.cleaned_data['phone'])
+        if phone != self.request.user.phone:
+            self.request.user.phone = phone
+            self.request.user.save()
         return HttpResponseRedirect(self.object.get_absolute_url())
 
     def feedback_form_valid(self, form):

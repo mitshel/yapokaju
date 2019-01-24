@@ -39,10 +39,24 @@
             position: relative;
             
         }
+        .nowrap {
+            white-space: nowrap;
+        }
+        .container {
+            position: relative;
+        }
+        .pt-6 {
+            padding-top: 4.5rem!important;
+        }
+        .pb-6 {
+            padding-bottom: 4.5rem!important;
+        }
         .section-wrapper {
             padding: 50px 0;
         }
-        .section-bg {
+        .section-bg,
+        .container-bg {
+            background-position: center;
             background-size: cover;
             height: 100%;
             position: absolute;
@@ -50,7 +64,8 @@
             width: 100%;
             z-index: -2;
         }
-        .section-bg:before {
+        .section-bg:before,
+        .container-bg:before {
             background: rgba(0, 0, 0, 0.6);
             content: "";
             height: 100%;
@@ -151,6 +166,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.easytabs/3.2.0/jquery.easytabs.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cleave.js/1.4.7/cleave.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cleave.js/1.4.7/addons/cleave-phone.ru.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js"></script>
     <script src="{% static 'core/site.js' %}"></script>
     <script>
@@ -158,6 +174,11 @@
             $(document.body).sitePlugin();
             $(".owl-carousel").owlCarousel();
             $(".fancybox").fancybox();
+            new Cleave('[name="phone"]', {
+                phone: true,
+                phoneRegionCode: 'ru',
+                prefix: '+7'
+            });
         })(jQuery);
     </script>
 </body>

@@ -7,11 +7,11 @@ from django.http.response import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.utils import timezone
-from django.views.generic import FormView, ListView, TemplateView
+from django.views.generic import DetailView, FormView, ListView, TemplateView
 from formtools.wizard.views import SessionWizardView
 from registration.views import RegistrationView as BaseRegistrationView
 
-from apps.clndr.models import Event, EventDatetime
+from apps.clndr.models import Event, EventDatetime, Member
 from apps.core.views import MultiFormsView
 
 from .forms import (EventCreateStepFirstForm, EventCreateStepOnceForm,
@@ -55,12 +55,12 @@ class ProfileSettingsView(LoginRequiredMixin, MultiFormsView):
 
 
 class ProfileEventListView(LoginRequiredMixin, ListView):
-    queryset = Event.objects.all()
+    model = Event
 
     template_name = 'account/event_list.html'
 
     def get_queryset(self):
-        queryset = super(ProfileEventListView, self).get_queryset()
+        queryset = self.model.objects.get_custom_queryset()
         queryset = queryset.filter(user=self.request.user)
         return queryset
 
@@ -105,11 +105,7 @@ class ProfileEventCreateView(LoginRequiredMixin, SessionWizardView):
         self.initial_dict = {
             'once': {
                 'date': today.date(),
-                'time': today.time()
             },
-            'repeatedly': {
-                'time': today.time()
-            }
         }
         return super(ProfileEventCreateView, self).get_form_initial(step)
 
@@ -123,45 +119,82 @@ class ProfileEventCreateView(LoginRequiredMixin, SessionWizardView):
         return str(self.success_url)
     
     def done(self, form_list, **kwargs):
+        today = timezone.now()
         main_step_cleaned_data = self.get_cleaned_data_for_step('main')
 
         event = Event.objects.create(template=main_step_cleaned_data['template'],
                                      recursive=main_step_cleaned_data['recursive'],
                                      user=self.request.user)
 
-
         datetime_list = []
         if main_step_cleaned_data['recursive']:
-            repeatedly_step_cleaned_data = self.get_cleaned_data_for_step('repeatedly')
+            repeatedly_step_cleaned_data = second_step_cleaned_data = self.get_cleaned_data_for_step('repeatedly')
+            time_by_agreement = repeatedly_step_cleaned_data['time_by_agreement']
 
             rrule_str = repeatedly_step_cleaned_data['rrule']
             if not 'COUNT' in rrule_str:
                 rrule_str += ';COUNT=10'
             for datetime_instance in rrulestr(rrule_str):
-                datetime_instance = datetime_instance.replace(
-                    hour=repeatedly_step_cleaned_data['time'].hour,
-                    minute=repeatedly_step_cleaned_data['time'].minute,
-                    second=0, microsecond=0
-                )
+                if repeatedly_step_cleaned_data['time']:
+                    datetime_instance = datetime_instance.replace(
+                        hour=repeatedly_step_cleaned_data['time'].hour,
+                        minute=repeatedly_step_cleaned_data['time'].minute,
+                        second=0,
+                        microsecond=0)
+                if not repeatedly_step_cleaned_data['time'] or time_by_agreement:
+                    datetime_instance = datetime_instance.replace(
+                        hour=0,
+                        minute=0,
+                        second=0,
+                        microsecond=0)
+
                 datetime_list.append(EventDatetime(datetime=datetime_instance, event=event))
         else:
-            oncey_step_cleaned_data = self.get_cleaned_data_for_step('once')
+            oncey_step_cleaned_data = second_step_cleaned_data = self.get_cleaned_data_for_step('once')
+            time_by_agreement = oncey_step_cleaned_data['time_by_agreement']
 
-            datetime_list.append(EventDatetime(
-                datetime=datetime.combine(
-                    oncey_step_cleaned_data['date'],
-                    oncey_step_cleaned_data['time']
-                ),
-                event=event))
+            datetime_instance = datetime.combine(
+                oncey_step_cleaned_data['date'],
+                today.time())
 
+            if oncey_step_cleaned_data['time']:
+                datetime_instance = datetime_instance.replace(
+                    hour=oncey_step_cleaned_data['time'].hour,
+                    minute=oncey_step_cleaned_data['time'].minute,
+                    second=0,
+                    microsecond=0)
+
+            if not oncey_step_cleaned_data['time'] or time_by_agreement:
+                    datetime_instance = datetime_instance.replace(
+                        hour=0,
+                        minute=0,
+                        second=0,
+                        microsecond=0)
+            datetime_list.append(EventDatetime(datetime=datetime_instance, event=event))
         EventDatetime.objects.bulk_create(datetime_list)
+
+        for restriction in second_step_cleaned_data['restrictions']:
+            event.restrictions.add(restriction)
+
+        event.time_by_agreement = second_step_cleaned_data['time_by_agreement']
 
         return HttpResponseRedirect(self.get_success_url())
 
 
-class ProfileReviewListView(LoginRequiredMixin, TemplateView):
-    template_name = 'account/review_list.html'
+class ProfileEventDetailView(LoginRequiredMixin, DetailView):
+    model = Event
 
+    template_name = 'account/event_detail.html'
 
-class ProfileReviewCreateView(LoginRequiredMixin ,TemplateView):
-    template_name = 'account/settings.html'
+    def get_queryset(self):
+        return self.model.objects.get_custom_queryset()
+
+    def get_context_data(self, **kwargs):
+        obj = self.get_object()
+
+        member_list = obj.members.filter(datetime__datetime=obj.datetime)
+        self.extra_context = {
+            'member_list': member_list
+        }
+
+        return super(ProfileEventDetailView, self).get_context_data(**kwargs)

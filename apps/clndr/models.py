@@ -57,11 +57,14 @@ class TemplateImage(TimestampsMixin):
 
 
 class EventManager(models.Manager):
-    def get_queryset(self):
+    def get_custom_queryset(self, today=None):
         queryset = super(EventManager, self).get_queryset()
 
+        if not today:
+            today = timezone.now()
+
         datetime_queryset = EventDatetime.objects \
-            .filter(event=OuterRef('pk'), active=True, datetime__gt=timezone.now()) \
+            .filter(event=OuterRef('pk'), active=True, datetime__gt=today) \
             .values('datetime') \
             .order_by('datetime')
         queryset = queryset.annotate(datetime=Subquery(datetime_queryset[:1])) \
@@ -69,14 +72,19 @@ class EventManager(models.Manager):
             .prefetch_related('template__images') \
             .filter(datetime__isnull=False) \
             .order_by('datetime', '-id')
+
         return queryset
 
 
+
 class Event(TimestampsMixin):
+    time_by_agreement = models.BooleanField(default=False)
+    comment = models.TextField('комментарий', max_length=2048, default='')
     recursive = models.BooleanField('повторяющиеся', default=False)
     template = models.ForeignKey('clndr.Template', null=True, on_delete=models.SET_NULL)
     user = models.ForeignKey('account.User', null=True, related_name='events',
                              on_delete=models.SET_NULL)
+    restrictions = models.ManyToManyField('clndr.Restriction', blank=True)
 
     default_manager = models.Manager()
     objects = EventManager()
@@ -132,3 +140,14 @@ class EventFeedback(TimestampsMixin):
     class Meta(object):
         verbose_name = _('feedback')
         verbose_name_plural = _('feedback')
+
+
+class Restriction(TimestampsMixin):
+    text = models.CharField('текст', max_length=64, default='')
+
+    class Meta(object):
+        verbose_name = _('ограничение')
+        verbose_name_plural = _('ограничения')
+
+    def __str__(self):
+        return self.text

@@ -1,6 +1,8 @@
 from django import forms
 from django import template
 
+from apps.core.utils import format_phone
+
 register = template.Library()
 
 
@@ -20,3 +22,9 @@ def is_date_filter(field):
     widget.
     """
     return isinstance(field.field.widget, forms.DateInput)
+
+
+@register.filter(name='phone')
+def phone_filter(string):
+    
+    return format_phone(string)

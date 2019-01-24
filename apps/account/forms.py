@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime
 
 from betterforms.forms import BetterForm, BetterModelForm, Fieldset
 from betterforms.multiform import MultiForm
@@ -10,7 +10,7 @@ from django.utils.text import capfirst
 from django.utils.translation import ugettext_lazy as _
 from registration.forms import RegistrationForm as BaseRegistrationForm
 
-from apps.clndr.models import Event
+from apps.clndr.models import Event, Restriction
 
 from .models import User
 
@@ -47,7 +47,6 @@ class RegistrationForm(BaseRegistrationForm):
 
 
 class ProfileForm(forms.ModelForm):
-
     class Meta(object):
         model = User
         fields = ('first_name', 'last_name', 'email')
@@ -71,7 +70,22 @@ class EventCreateStepOnceForm(BetterForm):
     }, format='%Y-%m-%d'))
     time = forms.TimeField(label='Время', widget=widgets.TimeInput(attrs={
         'placeholder': '00:00'
-    }), help_text='Время московское.')
+    }), help_text='Время московское.', required=False)
+    time_by_agreement = forms.BooleanField(label='Время по договоренности',
+                                           label_suffix='',
+                                           required=False)
+    comment = forms.CharField(
+        label='Комментарий',
+        max_length=2048,
+        widget=widgets.Textarea(attrs={
+            'rows': 5
+        }),
+        required=False)
+    restrictions = forms.ModelMultipleChoiceField(
+        label='Ограничения',
+        queryset=Restriction.objects.all(),
+        help_text='Удерживайте "Control" (или "Command" на Mac), чтобы выбрать несколько значений.',
+        required=False)
 
     class Media(object):
         js = ('core/js/bootstrap-datepicker.min.js', )
@@ -81,7 +95,22 @@ class EventCreateStepRepeatedlyForm(BetterForm):
     rrule = forms.CharField(widget=widgets.HiddenInput)
     time = forms.TimeField(label='Время', widget=widgets.TimeInput(attrs={
         'placeholder': '00:00'
-    }), help_text='Время московское.')
+    }), help_text='Время московское.', required=False)
+    time_by_agreement = forms.BooleanField(label='Время по договоренности',
+                                           label_suffix='',
+                                           required=False)
+    comment = forms.CharField(
+        label='Комментарий',
+        max_length=2048,
+        widget=widgets.Textarea(attrs={
+            'rows': 5
+        }),
+        required=False)
+    restrictions = forms.ModelMultipleChoiceField(
+        label='Ограничения',
+        queryset=Restriction.objects.all(),
+        help_text='Удерживайте "Control" (или "Command" на Mac), чтобы выбрать несколько значений.',
+        required=False)
     freq_type = forms.CharField(label='Количество повторений', widget=widgets.RadioSelect(choices=[
         ('f', 'Повторять максимальное количество раз'),
         ('c', 'Задать количество повторений'),
@@ -290,7 +319,7 @@ class EventCreateStepRepeatedlyForm(BetterForm):
 
     class Meta(object):
         fieldsets = (
-            Fieldset('main', fields=('time', 'rrule')),
+            Fieldset('main', fields=('time', 'time_by_agreement', 'comment', 'restrictions', 'rrule')),
             Fieldset('repeat', fields=('repeat_type', )),
             Fieldset('rule d', fields=('interval_daily', )),
             Fieldset('rule w', fields=('interval_weekly', 'repeat_weeklyday')),
