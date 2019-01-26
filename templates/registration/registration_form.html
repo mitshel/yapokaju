@@ -1,14 +1,51 @@
 {% extends "registration/registration_base.html" %}
-{% load i18n %}
+{% load i18n betterforms_tags widget_tweaks %}
 
 {% block title %}{% trans "Register for an account" %}{% endblock %}
 
 {% block content %}
-<form method="post" action="">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="{% trans 'Submit' %}" />
-</form>
+<section>
+    <div class="section-wrapper">
+        <div style="width: 340px; margin: 0 auto;">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h4 class="mb-3 font-weight-normal">Регистрация</h4>
+                    <form method="post"
+                        action="">
+                        {% csrf_token %}
+                        {% for field in form %}
+                        <div class="form-group">
+                            {% if field|is_checkbox %}
+                             <div class="custom-control custom-checkbox">
+                                {% if field.name == 'is_volunteer' and request.GET.is_volunteer %}
+                                {% render_field field class+="custom-control-input" checked=True %}
+                                {% else %}
+                                {% render_field field class+="custom-control-input" %}
+                                {% endif %}
+                                <label class="custom-control-label"
+                                    for="{{ field.auto_id }}">{{ field.label }}</label>
+                            </div>
+                            {% else %}
+                                {{ field.label_tag }}
+                                {% render_field field class+="form-control" %}
+                            {% endif %}
+                            {% if field.help_text %}
+                            <small class="form-text text-muted">{{ field.help_text }}</small>
+                            {% endif %}
+                            {% for error in field.errors %}
+                            <span class="text-danger">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        {% endfor %}
+                        <input type="hidden" name="next" value="{{ next }}" />
+                        <button class="btn btn-block btn-primary"
+                                type="submit">{% trans 'Submit' %}</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}
 
 

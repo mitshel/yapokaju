@@ -12,6 +12,47 @@
                 </div>
                 <div class="col-9 pt-3">
                     <h2>Мой профиль</h2>
+                    {% if user.is_volunteer %}
+                    <div class="mb-3">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+                        sint
+                        occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </div>
+                    {% else %}
+                    <div class="mb-3">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+                        occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </div>
+                    <p class="h4">Мои меропрития</p>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Название</th>
+                                <th scope="col">Дата и время</th>
+                                <th scope="col">Тип события</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for member in member_list %}
+                            <tr>
+                                <td>
+                                    <a href="{% url 'event_detail' member.event.id %}">{{ member.event.template.name }}</a>
+                                </td>
+                                <td>{{ member.datetime }}</td>
+                                <td>{{ member.event.template.get_type_display }}</td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="3">Нет запланированных мероприятий</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {% endif %}
                 </div>
             </div>
         </div>

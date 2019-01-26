@@ -54,14 +54,15 @@
     margin: 0;
 }
 .section-upcoming-events .tabs__panel {
+    background-color: #aaaaaa;
     height: 100%;
     padding: 25px;
     position: relative;
 }
 .section-upcoming-events .tabs__panel:before {
-    background: rgba(0, 0, 0, 0.6); /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)); /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: rgba(255, 255, 255, 0.6); /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.5)); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.5)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     content: "";
     height: 100%;
     left: 0;
@@ -81,9 +82,13 @@
 .tabs__panel-container {
     min-height: 380px;
 }
+.section-upcoming-events .tabs__panel-info {
+    position: relative;
+    z-index: 1000;
+}
 .section-upcoming-events .tabs__panel-title {
     bottom: 25px;
-    color: #ffffff;
+    color: #000000;
     display: block;
     font-size: 42px;
     font-weight: 600;
@@ -102,7 +107,7 @@
     z-index: 100;
 }
 .card-body.card-body_white-text {
-    color: #ffffff;
+    color: #000000;
 }
 .card-event__background {
     background-position: center;
@@ -115,9 +120,9 @@
     z-index: 1;
 }
 .card-event__background:before {
-    background: rgba(0, 0, 0, 0.6); /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)); /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: rgba(255, 255, 255, 0.6); /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.5)); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.5)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     content: "";
     height: 100%;
     left: 0;
@@ -159,10 +164,12 @@
                     <div class="col-md-6">
                         <div class="promo">
                             <div class="h1 font-weight-light">
-                                Хочу посещать мероприятия, и мне <a href="{% url 'registration_register' %}">нужна помощь</a>
+                                Хочу посещать мероприятия, и мне
+                                <a href="{% url 'registration_register' %}">нужна помощь</a>
                             </div>
                             <div class="h1 font-weight-light mt-4">
-                                    <a href="{% url 'registration_register' %}?is_volunteer=True">Я могу помогчь</a> проводить мероприятия
+                                <a href="{% url 'registration_register' %}?is_volunteer=True">Я могу помогчь</a>
+                                проводить мероприятия
                             </div>
                         </div>
                     </div>
@@ -204,11 +211,12 @@
     </div>
 </section>
 {% endif %}
-<section class="section-upcoming-events">
+
+<section id="upcomingEvents" class="section-upcoming-events">
     <div class="section-wrapper">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-header__text">Предстоящие мероприятия</h2>
+                <h2 class="section-header__text">Ближайшие мероприятия</h2>
             </div>
             <div class="section-body">
                 <div class="tabs row">
@@ -239,14 +247,21 @@
                                 <div class="tabs__panel-background"
                                     style="background-image: url({{ im.url }});"></div>
                                 {% endthumbnail %}
-    
-                                {% comment %}
-                                Сделать круглый аватар организатора.
-                                Написать количество поданых заявок.
-                                Возможно добавить в избранное.
-                                {% endcomment %}
                             {% endif %}
-                            <h3 class="tabs__panel-title">{{ event.template.name }}</h3>
+                            <div class="tabs__panel-info mt-4">
+                                <div class="h5">
+                                    {{ event.datetime|date:"d F Y г." }}
+                                    {% if not event.time_by_agreement %}
+                                        {{ event.datetime|date:"H:i" }}
+                                    {% else %}
+                                        время по договоренности
+                                    {% endif %}
+                                </div>
+                                <div class="h5">Организатор: {{ event.user.get_full_name }}</div>
+                            </div>
+                            <a href="{% url 'event_detail' event.id %}">
+                                <h3 class="tabs__panel-title font-weight-light">{{ event.template.name }}</h3>
+                            </a>
                         </div>
                         {% endfor %}
                     </div>
@@ -275,7 +290,15 @@
                             {% endif %}
                             <div class="card-body {% if event.template.image %}card-body_white-text{% endif %}">
                                 <h4 class="card-title">{{ event.template.name }}</h4>
-                                <p class="card-text">{{ event.template.get_type_display }} {{ event.datetime|date:"d N Y г." }} в {{ event.datetime|date:"H:i" }}</p>
+                                <p class="card-text">
+                                    {{ event.template.get_type_display }}
+                                    {{ event.datetime|date:"d F Y г." }}
+                                    {% if not event.time_by_agreement %}
+                                        {{ event.datetime|date:"H:i" }}
+                                    {% else %}
+                                        время по договоренности
+                                    {% endif %}
+                                </p>
                                 <p class="card-text card-event__short-description">{{ event.template.short_description }}</p>
                                 <div>
                                     <a class="btn btn-light border border-secondary"

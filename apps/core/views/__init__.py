@@ -123,10 +123,10 @@ class EventDetailView(SingleObjectMixin, MultiFormsView):
     def get_context_data(self, **kwargs):
         context_data = super(EventDetailView, self).get_context_data(**kwargs)
 
-        context_data['show_singup_form'] = not Member.objects \
-            .filter(user_id=self.request.user.id,
-                    event=self.object,
-                    datetime__datetime__gte=self.object.datetime)
+        member_list = self.object.members.filter(user_id=self.request.user.id,
+                                                 datetime__datetime__gte=self.object.datetime)
+        context_data['member_list'] = member_list
+        context_data['show_singup_form'] = not member_list
         context_data['feedback_list'] = EventFeedback.objects \
             .filter(Q(event=self.object), Q(show=True) | Q(show=False, user_id=self.request.user.id))
                  
@@ -137,14 +137,15 @@ class EventDetailView(SingleObjectMixin, MultiFormsView):
         form_class = self.form_classes['singup']
         form = form_class(**kwargs)
 
-        datetime_queryset = EventDatetime.objects.filter(datetime__gte=obj.datetime,
-                                                         event=obj)
+        datetime_queryset = obj.datetime_set.filter(datetime__gte=obj.datetime,
+                                                    active=True)
         form.fields['datetime'].queryset = datetime_queryset
         if len(datetime_queryset) == 1:
             form.fields['datetime'].initial = datetime_queryset[0]
             form.fields['datetime'].widget = HiddenInput()
 
-        form.fields['phone'].initial = self.request.user.phone
+        if self.request.user.is_authenticated:
+            form.fields['phone'].initial = self.request.user.phone
 
         return form
 
@@ -154,6 +155,9 @@ class EventDetailView(SingleObjectMixin, MultiFormsView):
         member = Member.objects.create(user=self.request.user,
                                        event=self.object,
                                        datetime=datetime)
+
+        datetime.active = False
+        datetime.save()
 
         phone = clear_phone(form.cleaned_data['phone'])
         if phone != self.request.user.phone:

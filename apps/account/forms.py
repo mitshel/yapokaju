@@ -10,7 +10,7 @@ from django.utils.text import capfirst
 from django.utils.translation import ugettext_lazy as _
 from registration.forms import RegistrationForm as BaseRegistrationForm
 
-from apps.clndr.models import Event, Restriction
+from apps.clndr.models import Event, EventDatetime, Restriction
 
 from .models import User
 
@@ -84,11 +84,14 @@ class EventCreateStepOnceForm(BetterForm):
     restrictions = forms.ModelMultipleChoiceField(
         label='Ограничения',
         queryset=Restriction.objects.all(),
-        help_text='Удерживайте "Control" (или "Command" на Mac), чтобы выбрать несколько значений.',
+        widget=widgets.CheckboxSelectMultiple,
         required=False)
 
     class Media(object):
-        js = ('core/js/bootstrap-datepicker.min.js', )
+        js = (
+            'core/js/bootstrap-datepicker.min.js',
+            'core/js/bootstrap-datepicker.ru.min.js'
+        )
 
 
 class EventCreateStepRepeatedlyForm(BetterForm):
@@ -330,3 +333,39 @@ class EventCreateStepRepeatedlyForm(BetterForm):
             Fieldset('freq_type', fields=('freq_type', )),
             Fieldset('freq c', fields=('freq_count', )),
         )
+
+
+class EventDatetimeForm(forms.ModelForm):
+    datetime = forms.SplitDateTimeField(widget=widgets.SplitDateTimeWidget(
+        date_attrs={
+            'class': 'form-control datepicker'
+        },
+        time_attrs={
+            'class': 'form-control mt-1'
+        },
+        date_format='%Y-%m-%d'
+    ))
+    class Meta(object):
+        model = EventDatetime
+        fields = ('datetime', 'active')
+
+    class Media(object):
+        js = (
+            'core/js/bootstrap-datepicker.min.js',
+            'core/js/bootstrap-datepicker.ru.min.js'
+        )
+
+
+
+class EventChangeForm(BetterModelForm):
+    comment = forms.CharField(
+        label='Комментарий',
+        max_length=2048,
+        widget=widgets.Textarea(attrs={
+            'rows': 5
+        }),
+        required=False)
+
+    class Meta(object):
+        model = Event
+        fields = ('comment', 'time_by_agreement')

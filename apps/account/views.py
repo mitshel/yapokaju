@@ -7,20 +7,33 @@ from django.http.response import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.utils import timezone
-from django.views.generic import DetailView, FormView, ListView, TemplateView
+from django.views.generic import (DetailView, FormView, ListView, TemplateView,
+                                  UpdateView)
+from extra_views import InlineFormSetFactory, UpdateWithInlinesView
 from formtools.wizard.views import SessionWizardView
 from registration.views import RegistrationView as BaseRegistrationView
 
 from apps.clndr.models import Event, EventDatetime, Member
 from apps.core.views import MultiFormsView
 
-from .forms import (EventCreateStepFirstForm, EventCreateStepOnceForm,
-                    EventCreateStepRepeatedlyForm, ProfileForm)
+from .forms import (EventChangeForm, EventCreateStepFirstForm,
+                    EventCreateStepOnceForm, EventCreateStepRepeatedlyForm,
+                    EventDatetimeForm, ProfileForm)
 
 
 # Create your views here.
 class ProfileView(LoginRequiredMixin, TemplateView):
     template_name = 'account/profile.html'
+    extra_context = {}
+
+    def get_context_data(self, **kwargs):
+        today = timezone.now()
+        member_list = self.request.user.members.filter(datetime__datetime__gte=today)
+        self.extra_context = {
+            'member_list': member_list
+        }
+
+        return super(ProfileView, self).get_context_data(**kwargs)
 
 
 class ProfileSettingsView(LoginRequiredMixin, MultiFormsView):
@@ -177,6 +190,7 @@ class ProfileEventCreateView(LoginRequiredMixin, SessionWizardView):
             event.restrictions.add(restriction)
 
         event.time_by_agreement = second_step_cleaned_data['time_by_agreement']
+        event.save()
 
         return HttpResponseRedirect(self.get_success_url())
 
@@ -198,3 +212,26 @@ class ProfileEventDetailView(LoginRequiredMixin, DetailView):
         }
 
         return super(ProfileEventDetailView, self).get_context_data(**kwargs)
+
+
+class EventDatetimeInline(InlineFormSetFactory):
+    model = EventDatetime
+    form_class = EventDatetimeForm
+    # fields = ('datetime', 'active')
+    factory_kwargs = {
+        'extra': 0
+    }
+
+
+class ProfileEventChangeView(LoginRequiredMixin, UpdateWithInlinesView):
+    model = Event
+    inlines = [
+        EventDatetimeInline,
+    ]
+    form_class = EventChangeForm
+
+    template_name = 'account/event_change.html'
+
+    def get_success_url(self):
+        obj = self.get_object()
+        return reverse_lazy('profile_event_detail', kwargs={'pk': obj.id})

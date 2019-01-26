@@ -23,10 +23,20 @@
                             {% block form %}{% endblock form %}
             
                             {% if wizard.steps.prev %}
-                            <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.first }}">{% trans "first step" %}</button>
-                            <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}">{% trans "prev step" %}</button>
+                            <button class="btn btn-light"
+                                    name="wizard_goto_step"
+                                    type="submit" 
+                                    value="{{ wizard.steps.prev }}">{% trans "prev step" %}</button>
                             {% endif %}
-                            <input type="submit" value="{% trans " submit" %}" />
+                            {% if wizard.steps.next %}
+                            <input class="btn btn-primary ml-3"
+                                   type="submit"
+                                   value="Следующий шаг" />
+                            {% else %}
+                            <input class="btn btn-primary ml-3"
+                                   type="submit"
+                                   value="{% trans 'Save' %}" />
+                            {% endif %}
                         </form>
                     </div>
 

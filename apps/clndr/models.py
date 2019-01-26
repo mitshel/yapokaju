@@ -144,6 +144,7 @@ class EventFeedback(TimestampsMixin):
 
 class Restriction(TimestampsMixin):
     text = models.CharField('текст', max_length=64, default='')
+    description = models.TextField('описание', max_length=1024, default='')
 
     class Meta(object):
         verbose_name = _('ограничение')

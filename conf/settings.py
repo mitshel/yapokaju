@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'betterforms',
     'debug_toolbar',
     'django_filters',
+    'extra_views',
     'formtools',
     'registration',
     'sorl.thumbnail',

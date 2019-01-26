@@ -12,7 +12,7 @@
     }
     .section-event-detail-header_bd-image h1,
     .section-event-detail-header_bd-image .short_description {
-        color: #ffffff;
+        color: #000000;
     }
 </style>
 
@@ -24,8 +24,16 @@
                 style="background-image: url({{ im.url }});"></div>
             {% endthumbnail %}
             <div class="section-body ml-3">
-                <h1 class="pt-6 pb-4">{{ object.template.name }}</h1>
-                <div class="short_description pb-5">{{ object.template.short_description }}</div>
+                <h1 class="pt-6 mb-2">{{ object.template.name }}</h1>
+                <div class="short_description lead mb-2">{{ object.template.short_description }}</div>
+                <div class="lead">Дата: {{ object.datetime|date:"d F Y г." }}</div>
+                <div class="lead pb-5">
+                    {% if not object.time_by_agreement %}
+                        Время: {{ object.datetime|date:"H:i" }}
+                    {% else %}
+                        Время по договоренности
+                    {% endif %}
+                </div>
             </div>
         </div>
     </div>
@@ -37,6 +45,7 @@
                 <div class="col-8">
                     <div class="mb-4">
                         <div class="h3">О мероприятии</div>
+                        <div class="lead mb-2">Организатор: {{ object.user.get_full_name }}</div>
                         {{ object.template.description|safe }}
                         {% if object.comment %}
                         <div class="bg-light py-4 px-3 mt-3">
@@ -50,40 +59,53 @@
                     {% if not user.is_authenticated %}
                     <p><a href="{% url 'auth_login' %}">Войдите</a> в свою учетную запись,
                         чтобы записаться на мероприятие.</p>
-                    {% elif show_singup_form %}
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Записаться на мероприятие</h5>
-                            <form action=""
-                                  method="POST">
-                                {% csrf_token %}
-                                {% for field in forms.singup %}
-                                    {% if field.is_hidden %}
-                                        {{ field }}
-                                    {% else %}
-                                    <div class="form-group">
-                                        {{ field.label_tag }}
-                                        {% render_field field class+="form-control" %}
+                    {% elif show_singup_form  %}
+                        {% if not user.is_volunteer %}
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <h5 class="card-title">Записаться на мероприятие</h5>
+                                <form action=""
+                                    method="POST">
+                                    {% csrf_token %}
+                                    {% for field in forms.singup %}
+                                        {% if field.is_hidden %}
+                                            {{ field }}
+                                        {% else %}
+                                        <div class="form-group">
+                                            {{ field.label_tag }}
+                                            {% render_field field class+="form-control" %}
+                                        </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                    <div class="form-group mb-0">
+                                        <button class="btn btn-success btn-block" 
+                                            type="submit"
+                                            name="action"
+                                            value="singup">Записаться</button>
                                     </div>
-                                    {% endif %}
-                                {% endfor %}
-                                <div class="form-group mb-0">
-                                    <button class="btn btn-success btn-block" 
-                                        type="submit"
-                                        name="action"
-                                        value="singup">Записаться</button>
-                                </div>
-                            </form>
+                                </form>
+                            </div>
                         </div>
-                    </div>
+                        {% endif %}
                     {% else %}
-                    <p>Вы уже зарегестрированны на данное мероприятие</p>
+                    <p>
+                        Вы зарегестрированны на данное мероприятие: {{ member_list.0.datetime.datetime|date:"d F Y г." }}
+                        {% if not object.time_by_agreement %}
+                            в {{ member_list.0.datetime.datetime|date:"H:i" }}
+                        {% else %}
+                            <br>Время по договоренности
+                        {% endif %}
+                    </p>
                     {% endif %}
                     {% if object.restrictions.exists %}
-                    <div class="h5 mt-4">Ограничения</div>
+                    <div class="h5">Ограничения</div>
                     <ul>
                         {% for restriction in object.restrictions.all %}
-                        <li>{{ restriction }}</li>
+                        <li>
+                            {{ restriction.text }}
+                            <i class="fas fa-question-circle c-pointer"
+                                title="{{ restriction.description }}"></i>
+                        </li>
                         {% endfor %}
                     </ul>
                     {% endif %}

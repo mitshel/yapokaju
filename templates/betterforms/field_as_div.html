@@ -8,10 +8,13 @@
     {% if field|is_checkbox %}
         {{ field }}
         {{ field.label_tag }}
+    {% elif field|is_checkbox_sm %}
+        {{ field.label_tag }}
+        {{ field }}
     {% elif field|is_radioselect %}
         {{ field.label_tag }}
         {{ field }}
-    {% elif field|is_date%}
+    {% elif field|is_date %}
         {{ field.label_tag }}
         {% render_field field class+="form-control datepicker" %}
     {% else %}
