@@ -42,7 +42,16 @@
                                 <td>
                                     <a href="{% url 'event_detail' member.event.id %}">{{ member.event.template.name }}</a>
                                 </td>
-                                <td>{{ member.datetime }}</td>
+                                <td>
+                                    <p class="my-0">
+                                        {{ member.datetime.datetime|date:"d F Y г." }}
+                                        {% if not member.event.time_by_agreement %}
+                                        в {{ member.datetime.datetime|date:"H:i" }}
+                                        {% else %}
+                                        <br>Время по договоренности
+                                        {% endif %}
+                                    </p>
+                                </td>
                                 <td>{{ member.event.template.get_type_display }}</td>
                             </tr>
                             {% empty %}

@@ -27,6 +27,7 @@
                                 <th style="width: 1px;">#</th>
                                 <th scope="col">Название</th>
                                 <th scope="col">Тип события</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -37,6 +38,10 @@
                                     <a href="{% url 'profile_event_detail' event.id %}">{{ event.template.name }}</a>
                                 </td>
                                 <td>{{ event.template.get_type_display }}</td>
+                                <td>
+                                    <a class="text-danger"
+                                       href="{% url 'profile_event_delete' event.id %}">Удалить</a>
+                                </td>
                             </tr>
                             {% endfor %}
                         </tbody>

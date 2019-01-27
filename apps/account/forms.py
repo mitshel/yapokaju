@@ -138,7 +138,7 @@ class EventCreateStepRepeatedlyForm(BetterForm):
     restrictions = forms.ModelMultipleChoiceField(
         label='Ограничения',
         queryset=Restriction.objects.all(),
-        help_text='Удерживайте "Control" (или "Command" на Mac), чтобы выбрать несколько значений.',
+        widget=widgets.CheckboxSelectMultiple,
         required=False)
     freq_type = forms.CharField(label='Количество повторений', widget=widgets.RadioSelect(choices=[
         ('f', 'Повторять максимальное количество раз'),

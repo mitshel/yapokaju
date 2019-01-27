@@ -7,8 +7,8 @@ from django.http.response import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.utils import timezone
-from django.views.generic import (DetailView, FormView, ListView, TemplateView,
-                                  UpdateView)
+from django.views.generic import (DeleteView, DetailView, FormView, ListView,
+                                  TemplateView, UpdateView)
 from extra_views import InlineFormSetFactory, UpdateWithInlinesView
 from formtools.wizard.views import SessionWizardView
 from registration.views import RegistrationView as BaseRegistrationView
@@ -80,7 +80,8 @@ class ProfileEventListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         queryset = super(ProfileEventListView, self).get_queryset()
-        queryset = queryset.filter(user=self.request.user)
+        queryset = queryset.filter(user=self.request.user, datetime_set__isnull=False) \
+                           .order_by('-id').distinct()
         return queryset
 
 
@@ -195,6 +196,7 @@ class ProfileEventCreateView(LoginRequiredMixin, SessionWizardView):
         for restriction in second_step_cleaned_data['restrictions']:
             event.restrictions.add(restriction)
 
+        event.comment = second_step_cleaned_data['comment']
         event.time_by_agreement = second_step_cleaned_data['time_by_agreement']
         event.save()
 
@@ -205,6 +207,11 @@ class ProfileEventDetailView(LoginRequiredMixin, DetailView):
     model = Event
 
     template_name = 'account/event_detail.html'
+
+    def get_queryset(self):
+        queryset = super(ProfileEventDetailView, self).get_queryset()
+        queryset = queryset.filter(user=self.request.user)
+        return queryset
 
     def get_context_data(self, **kwargs):
         obj = self.get_object()
@@ -234,8 +241,27 @@ class ProfileEventChangeView(LoginRequiredMixin, UpdateWithInlinesView):
 
     template_name = 'account/event_change.html'
 
+    def get_queryset(self):
+        queryset = super(ProfileEventChangeView, self).get_queryset()
+        queryset = queryset.filter(user=self.request.user)
+        return queryset
+
     def get_success_url(self):
         obj = self.get_object()
         if not obj.datetime_set.all():
             return reverse_lazy('profile_event_list')
         return reverse_lazy('profile_event_change', kwargs={'pk': obj.id})
+
+
+class ProfileEventDeleteView(LoginRequiredMixin, DeleteView):
+    model = Event
+
+    template_name = 'account/event_confirm_delete.html'
+
+    def get_queryset(self):
+        queryset = super(ProfileEventDeleteView, self).get_queryset()
+        queryset = queryset.filter(user=self.request.user)
+        return queryset
+
+    def get_success_url(self):
+        return reverse_lazy('profile_event_list')

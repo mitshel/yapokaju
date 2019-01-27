@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load i18n thumbnail core_tegs %}
+
+
+{% block content %}
+<section>
+    <div class="section-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-3 pt-3">
+                    {% include 'account/sidebar.html' %}
+                </div>
+                <div class="col-9 pt-3">
+                    <h4 class="mb-3"">Удалить мероприятие {{ object.template.name }}?</h4>
+                    <div class="bg-light border rounded p-2">
+                        <form
+                            action=""
+                            method="POST"
+                            novalidate>
+                            {% csrf_token %}
+                            <div class="text-left">
+                                <a class="btn btn-light"
+                                   href="">Нет, вернуться к мероприятию</a>                    
+                                <button class="btn btn-danger ml-2"
+                                        type="submit">{% trans 'Delete' %}</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

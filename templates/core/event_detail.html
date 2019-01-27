@@ -146,7 +146,7 @@
 </section>
 {% endif %}
 
-{% if user.is_authenticated and not user.is_volunteer %}
+{% if user.is_authenticated and not user.is_volunteer and member_list %}
 <section>
     <div class="section-wrapper pt-0">
         <div class="container">

@@ -31,7 +31,16 @@
                         <tbody>
                             {% for member in member_list %}
                             <tr>
-                                <td class="nowrap">{{ member.created_at }}</td>
+                                <td class="nowrap">
+                                    <p class="my-0">
+                                        {{ member.datetime.datetime|date:"d F Y г." }}
+                                        {% if not member.event.time_by_agreement %}
+                                        в {{ member.datetime.datetime|date:"H:i" }}
+                                        {% else %}
+                                        <br>Время по договоренности
+                                        {% endif %}
+                                    </p>
+                                </td>
                                 <td>{{ member.user.get_full_name }}</td>
                                 <td>{{ member.user.phone|phone }}</td>
                                 <td>{{ member.user.email }}</td>
