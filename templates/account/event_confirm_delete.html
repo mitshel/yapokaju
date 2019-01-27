@@ -20,7 +20,7 @@
                             {% csrf_token %}
                             <div class="text-left">
                                 <a class="btn btn-light"
-                                   href="">Нет, вернуться к мероприятию</a>                    
+                                   href="{% url 'profile_event_detail' object.id %}">Нет, вернуться к мероприятию</a>                    
                                 <button class="btn btn-danger ml-2"
                                         type="submit">{% trans 'Delete' %}</button>
                             </div>
