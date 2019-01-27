@@ -86,7 +86,7 @@ class HomepageView(MultiFormsView):
     def get_context_data(self, **kwargs):
         now = timezone.now()
 
-        event_list = Event.objects.get_custom_queryset().filter(datetime_sum__gt=0)
+        event_list = Event.objects.get_custom_queryset().filter(datetime_set__free=True).distinct()
         self.extra_context = {
             'upcoming_event_list': event_list[:3],
             'event_list': event_list
@@ -126,7 +126,7 @@ class EventDetailView(SingleObjectMixin, MultiFormsView):
         member_list = self.object.members.filter(user_id=self.request.user.id,
                                                  datetime__datetime__gte=self.object.datetime)
         context_data['member_list'] = member_list
-        context_data['show_singup_form'] = not member_list
+        context_data['show_singup_form'] = not member_list and self._get_datetime_queryset()
         context_data['feedback_list'] = EventFeedback.objects \
             .filter(Q(event=self.object), Q(show=True) | Q(show=False, user_id=self.request.user.id))
                  
@@ -137,8 +137,7 @@ class EventDetailView(SingleObjectMixin, MultiFormsView):
         form_class = self.form_classes['singup']
         form = form_class(**kwargs)
 
-        datetime_queryset = obj.datetime_set.filter(datetime__gte=obj.datetime,
-                                                    active=True)
+        datetime_queryset = self._get_datetime_queryset()
         form.fields['datetime'].queryset = datetime_queryset
         if len(datetime_queryset) == 1:
             form.fields['datetime'].initial = datetime_queryset[0]
@@ -156,7 +155,7 @@ class EventDetailView(SingleObjectMixin, MultiFormsView):
                                        event=self.object,
                                        datetime=datetime)
 
-        datetime.active = False
+        datetime.free = False
         datetime.save()
 
         phone = clear_phone(form.cleaned_data['phone'])
@@ -172,3 +171,7 @@ class EventDetailView(SingleObjectMixin, MultiFormsView):
                                      event=self.object,
                                      text=text)
         return HttpResponseRedirect(self.object.get_absolute_url())
+
+    def _get_datetime_queryset(self):
+        obj = self.get_object()
+        return obj.datetime_set.filter(datetime__gte=obj.datetime, free=True)

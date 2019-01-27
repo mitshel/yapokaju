@@ -1,5 +1,5 @@
 from django.db import models
-from django.db.models import OuterRef, Subquery, Sum
+from django.db.models import Count, OuterRef, Subquery, Sum
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
@@ -68,17 +68,13 @@ class EventManager(models.Manager):
             .filter(event=OuterRef('pk'), active=True, datetime__gt=today) \
             .values('datetime') \
             .order_by('datetime')
-        queryset = queryset.annotate(
-            datetime=Subquery(datetime_queryset[:1]),
-            datetime_sum=Sum('datetime_set')
-        ) \
+        queryset = queryset.annotate(datetime=Subquery(datetime_queryset[:1])) \
             .select_related('template') \
             .prefetch_related('template__images') \
             .filter(datetime__isnull=False) \
             .order_by('datetime', '-id')
 
         return queryset
-
 
 
 class Event(TimestampsMixin):
@@ -108,6 +104,7 @@ class Event(TimestampsMixin):
 class EventDatetime(TimestampsMixin):
     datetime = models.DateTimeField(_('date and time'), null=True)
     active = models.BooleanField(default=True)
+    free = models.BooleanField(default=True)
     event = models.ForeignKey('clndr.Event', related_name='datetime_set',
                               on_delete=models.CASCADE)
 

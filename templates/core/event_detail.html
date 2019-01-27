@@ -87,14 +87,18 @@
                             </div>
                         </div>
                         {% endif %}
-                    {% else %}
-                    <p>
+                    {% elif member_list.0 %}
+                    <p class="mb-3">
                         Вы зарегестрированны на данное мероприятие: {{ member_list.0.datetime.datetime|date:"d F Y г." }}
                         {% if not object.time_by_agreement %}
                             в {{ member_list.0.datetime.datetime|date:"H:i" }}
                         {% else %}
                             <br>Время по договоренности
                         {% endif %}
+                    </p>
+                    {% else %}
+                    <p class="mb-3">
+                        Регистрация на мероприятия завершена.
                     </p>
                     {% endif %}
                     {% if object.restrictions.exists %}

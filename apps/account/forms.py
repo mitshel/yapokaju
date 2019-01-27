@@ -362,7 +362,7 @@ class EventDatetimeForm(forms.ModelForm):
     ))
     class Meta(object):
         model = EventDatetime
-        fields = ('datetime', 'active')
+        fields = ('datetime', 'free')
 
     class Media(object):
         js = (
