@@ -14,14 +14,13 @@ def clear_phone(string):
 
 def format_phone(string):
     return ''.join([
-        '+',
-        string[:1],
+        string[:2],
         ' (',
-        string[1:4],
+        string[2:5],
         ') ',
-        string[4:7],
+        string[5:8],
         '-',
-        string[7:9],
+        string[8:10],
         '-',
-        string[9:11]
+        string[10:12]
     ])

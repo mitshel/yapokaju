@@ -217,7 +217,7 @@ class ProfileEventDetailView(LoginRequiredMixin, DetailView):
 class EventDatetimeInline(InlineFormSetFactory):
     model = EventDatetime
     form_class = EventDatetimeForm
-    # fields = ('datetime', 'active')
+    
     factory_kwargs = {
         'extra': 0
     }
@@ -234,4 +234,6 @@ class ProfileEventChangeView(LoginRequiredMixin, UpdateWithInlinesView):
 
     def get_success_url(self):
         obj = self.get_object()
-        return reverse_lazy('profile_event_detail', kwargs={'pk': obj.id})
+        if not obj.datetime_set.all():
+            return reverse_lazy('profile_event_list')
+        return reverse_lazy('profile_event_change', kwargs={'pk': obj.id})

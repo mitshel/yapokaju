@@ -104,7 +104,7 @@ class Event(TimestampsMixin):
 class EventDatetime(TimestampsMixin):
     datetime = models.DateTimeField(_('date and time'), null=True)
     active = models.BooleanField(default=True)
-    free = models.BooleanField(default=True)
+    free = models.BooleanField('свободно', default=True)
     event = models.ForeignKey('clndr.Event', related_name='datetime_set',
                               on_delete=models.CASCADE)
 
