@@ -6,8 +6,11 @@
 {% else %}
 <div class="form-group {% if field.css_classes %}{{ field.css_classes }} {% endif %}{{ field.html_name }}{% if field.form.prefix %} {{ field.name }}{% endif %} formField{% if field.field.required and not field.form.required_css_class %} required{% endif %}">
     {% if field|is_checkbox %}
-        {{ field }}
-        {{ field.label_tag }}
+        <div class="custom-control custom-checkbox">
+            {% render_field field class+="custom-control-input" %}
+            <label class="custom-control-label"
+                for="{{ field.auto_id }}">{{ field.label }}</label>
+        </div>
     {% elif field|is_checkbox_sm %}
         {{ field.label_tag }}
         {{ field }}

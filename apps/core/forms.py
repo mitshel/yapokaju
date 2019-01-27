@@ -10,9 +10,6 @@ class EventSingUpForm(forms.Form):
 
 
 class EventFeedbackForm(forms.ModelForm):
-    # text = forms.CharField(label='Текст отзыва', widget=widgets.Textarea(attrs={
-    #     'rows': 5
-    # }), help_text='Не более 2048 символов.')
 
     class Meta(object):
         model = EventFeedback

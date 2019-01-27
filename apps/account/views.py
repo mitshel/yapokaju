@@ -58,6 +58,12 @@ class ProfileSettingsView(LoginRequiredMixin, MultiFormsView):
             })
         return kwargs
 
+    def create_password_form(self, **kwargs):
+        form_class = self.form_classes['password']
+        form = form_class(**kwargs)
+        form.fields['old_password'].widget.attrs.pop('autofocus', None)
+        return form
+
     def profile_form_valid(self, form):
         form.save()
         return HttpResponseRedirect(self.get_success_url())
@@ -73,7 +79,7 @@ class ProfileEventListView(LoginRequiredMixin, ListView):
     template_name = 'account/event_list.html'
 
     def get_queryset(self):
-        queryset = self.model.objects.get_custom_queryset()
+        queryset = super(ProfileEventListView, self).get_queryset()
         queryset = queryset.filter(user=self.request.user)
         return queryset
 
@@ -200,15 +206,11 @@ class ProfileEventDetailView(LoginRequiredMixin, DetailView):
 
     template_name = 'account/event_detail.html'
 
-    def get_queryset(self):
-        return self.model.objects.get_custom_queryset()
-
     def get_context_data(self, **kwargs):
         obj = self.get_object()
 
-        member_list = obj.members.filter(datetime__datetime=obj.datetime)
         self.extra_context = {
-            'member_list': member_list
+            'member_list': obj.members.all()
         }
 
         return super(ProfileEventDetailView, self).get_context_data(**kwargs)

@@ -39,6 +39,8 @@ class RegistrationForm(BaseRegistrationForm):
         self.fields.move_to_end('password1')
         self.fields.move_to_end('password2')
 
+        self.fields['email'].widget.attrs.pop('autofocus', None)
+
     def save(self, commit=True):
         user = super(RegistrationForm, self).save(commit=False)
         user.first_name = self.cleaned_data['first_name']
@@ -107,6 +109,15 @@ class EventCreateStepOnceForm(BetterForm):
             'core/js/bootstrap-datepicker.min.js',
             'core/js/bootstrap-datepicker.ru.min.js'
         )
+
+    def __init__(self, *args, **kwargs):
+        super(EventCreateStepOnceForm, self).__init__(*args, **kwargs)
+        today = timezone.now()
+
+        self.fields['time'].help_text = ' '.join([
+            'Текущее время:',
+            timezone.localtime(today).strftime("%H:%M МСК"),
+        ])
 
 
 class EventCreateStepRepeatedlyForm(BetterForm):
@@ -349,6 +360,15 @@ class EventCreateStepRepeatedlyForm(BetterForm):
             Fieldset('freq c', fields=('freq_count', )),
         )
 
+    def __init__(self, *args, **kwargs):
+        super(EventCreateStepRepeatedlyForm, self).__init__(*args, **kwargs)
+        today = timezone.now()
+
+        self.fields['time'].help_text = ' '.join([
+            'Текущее время:',
+            timezone.localtime(today).strftime("%H:%M МСК"),
+        ])
+
 
 class EventDatetimeForm(forms.ModelForm):
     datetime = forms.SplitDateTimeField(widget=widgets.SplitDateTimeWidget(
@@ -358,7 +378,8 @@ class EventDatetimeForm(forms.ModelForm):
         time_attrs={
             'class': 'form-control mt-1'
         },
-        date_format='%Y-%m-%d'
+        date_format='%Y-%m-%d',
+        time_format='%H-%M'
     ))
     class Meta(object):
         model = EventDatetime
@@ -369,6 +390,15 @@ class EventDatetimeForm(forms.ModelForm):
             'core/js/bootstrap-datepicker.min.js',
             'core/js/bootstrap-datepicker.ru.min.js'
         )
+
+    def __init__(self, *args, **kwargs):
+        super(EventDatetimeForm, self).__init__(*args, **kwargs)
+        today = timezone.now()
+
+        self.fields['datetime'].help_text = ' '.join([
+            'Текущяя дата и время:',
+            timezone.localtime(today).strftime("%d.%m.%Y %H:%M МСК"),
+        ])
 
 
 

@@ -1,5 +1,5 @@
 from django.db import models
-from django.db.models import Count, OuterRef, Subquery, Sum
+from django.db.models import Count, OuterRef, Q, Subquery, Sum
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
@@ -65,7 +65,10 @@ class EventManager(models.Manager):
             today = timezone.now()
 
         datetime_queryset = EventDatetime.objects \
-            .filter(event=OuterRef('pk'), active=True, datetime__gt=today) \
+            .filter(
+                Q(event=OuterRef('pk')),
+                Q(active=True),
+                Q(datetime__gte=today) | Q(datetime__date__gte=today.date(), event__time_by_agreement=True)) \
             .values('datetime') \
             .order_by('datetime')
         queryset = queryset.annotate(datetime=Subquery(datetime_queryset[:1])) \

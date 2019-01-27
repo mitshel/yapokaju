@@ -24,18 +24,18 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
+                                <th style="width: 1px;">#</th>
                                 <th scope="col">Название</th>
-                                <th scope="col">Дата и время</th>
                                 <th scope="col">Тип события</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for event in object_list %}
                             <tr>
-                                <th>
+                                <th>{{ event.id|stringformat:"06d" }}</th>
+                                <td>
                                     <a href="{% url 'profile_event_detail' event.id %}">{{ event.template.name }}</a>
-                                </th>
-                                <td>{{ event.datetime }}</td>
+                                </td>
                                 <td>{{ event.template.get_type_display }}</td>
                             </tr>
                             {% endfor %}
