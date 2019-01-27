@@ -68,7 +68,10 @@ class EventManager(models.Manager):
             .filter(event=OuterRef('pk'), active=True, datetime__gt=today) \
             .values('datetime') \
             .order_by('datetime')
-        queryset = queryset.annotate(datetime=Subquery(datetime_queryset[:1])) \
+        queryset = queryset.annotate(
+            datetime=Subquery(datetime_queryset[:1]),
+            datetime_sum=Sum('datetime_set')
+        ) \
             .select_related('template') \
             .prefetch_related('template__images') \
             .filter(datetime__isnull=False) \

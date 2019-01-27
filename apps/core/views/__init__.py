@@ -86,7 +86,7 @@ class HomepageView(MultiFormsView):
     def get_context_data(self, **kwargs):
         now = timezone.now()
 
-        event_list = Event.objects.get_custom_queryset()
+        event_list = Event.objects.get_custom_queryset().filter(datetime_sum__gt=0)
         self.extra_context = {
             'upcoming_event_list': event_list[:3],
             'event_list': event_list
