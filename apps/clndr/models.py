@@ -30,6 +30,7 @@ class Template(TimestampsMixin):
     image = models.OneToOneField('clndr.TemplateImage', verbose_name='главное изображени',
                                  null=True, blank=True, related_name='+',
                                  on_delete=models.SET_NULL)
+    file = models.FileField(upload_to='files/%Y/%m/%d', null=True, blank=True)   
     
     default_manager = models.Manager()
     objects = TemplateManager()
@@ -78,13 +79,14 @@ class EventManager(models.Manager):
 
 
 class Event(TimestampsMixin):
-    time_by_agreement = models.BooleanField(default=False)
+    time_by_agreement = models.BooleanField('время по договоренности', default=False)
     comment = models.TextField('комментарий', max_length=2048, default='')
     recursive = models.BooleanField('повторяющиеся', default=False)
     template = models.ForeignKey('clndr.Template', null=True, on_delete=models.SET_NULL)
     user = models.ForeignKey('account.User', null=True, related_name='events',
                              on_delete=models.SET_NULL)
-    restrictions = models.ManyToManyField('clndr.Restriction', blank=True)
+    restrictions = models.ManyToManyField('clndr.Restriction', verbose_name='ограничения',
+                                          blank=True)
 
     default_manager = models.Manager()
     objects = EventManager()
@@ -147,8 +149,8 @@ class Restriction(TimestampsMixin):
     description = models.TextField('описание', max_length=1024, default='')
 
     class Meta(object):
-        verbose_name = _('ограничение')
-        verbose_name_plural = _('ограничения')
+        verbose_name = 'ограничение'
+        verbose_name_plural = 'ограничения'
 
     def __str__(self):
         return self.text

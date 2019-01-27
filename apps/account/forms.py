@@ -6,11 +6,11 @@ from django import forms
 from django.contrib.auth.forms import PasswordChangeForm, UserChangeForm
 from django.forms import widgets
 from django.utils import timezone
-from django.utils.text import capfirst
+from django.utils.text import capfirst, mark_safe
 from django.utils.translation import ugettext_lazy as _
 from registration.forms import RegistrationForm as BaseRegistrationForm
 
-from apps.clndr.models import Event, EventDatetime, Restriction
+from apps.clndr.models import Event, EventDatetime, Restriction, Template
 
 from .models import User
 
@@ -27,7 +27,10 @@ class RegistrationForm(BaseRegistrationForm):
             'и не должен состоять только из цифр.'
         ])
     )
-    is_volunteer = forms.BooleanField(label='Я волонтер', help_text='Могу организовывать и проводить мероприятия.')
+    is_volunteer = forms.BooleanField(
+        label='Я волонтер',
+        help_text='Могу организовывать и проводить мероприятия.',
+        required=False)
 
     def __init__(self, *args, **kwargs):
         super(RegistrationForm, self).__init__(*args, **kwargs)
@@ -62,6 +65,18 @@ class EventCreateStepFirstForm(BetterModelForm):
                 (True, 'Да')
             ]),
         }
+    def __init__(self, *args, **kwargs):
+        super(EventCreateStepFirstForm, self).__init__(*args, **kwargs)
+
+        template_list = Template.objects.all()
+        self.fields['template'].help_text = mark_safe(''.join([
+            *[
+                '<span class="template-file-href href-{}"><a href="{}">Скачать файл</a> с описанием экскурсии.</span>'.format(
+                    t.id,
+                    t.file.url,
+                )
+                for t in template_list if t.file]
+        ]))
 
 
 class EventCreateStepOnceForm(BetterForm):
@@ -365,7 +380,13 @@ class EventChangeForm(BetterModelForm):
             'rows': 5
         }),
         required=False)
+    time_by_agreement = forms.BooleanField(label='Время по договоренности',
+                                           label_suffix='',
+                                           required=False)
 
     class Meta(object):
         model = Event
-        fields = ('comment', 'time_by_agreement')
+        fields = ('comment', 'restrictions', 'time_by_agreement')
+        widgets = {
+            'restrictions': widgets.CheckboxSelectMultiple
+        }

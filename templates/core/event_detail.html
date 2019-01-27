@@ -142,7 +142,7 @@
 </section>
 {% endif %}
 
-{% if user.is_authenticated %}
+{% if user.is_authenticated and not user.is_volunteer %}
 <section>
     <div class="section-wrapper pt-0">
         <div class="container">

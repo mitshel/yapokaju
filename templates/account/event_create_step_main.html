@@ -2,6 +2,24 @@
 {% load widget_tweaks %}
 
 
+{% block form_media %}
+{{ form.media }}
+<script>
+    $(document).ready(function () {
+        var currentStep = '{{ form.prefix }}';
+
+        $('.template-file-href').hide();
+        $('#id_' + currentStep + '-template').change(function (event) {
+            var $element = $(event.target);
+            
+            $('.template-file-href').hide();
+            $('.template-file-href.href-' + $element.val()).show();
+        });
+    });
+</script>
+{% endblock form_media %}
+
+
 {% block form %}
 {% include 'betterforms/form_as_fieldsets.html' %}
 {% endblock form %}

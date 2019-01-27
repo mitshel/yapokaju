@@ -13,6 +13,9 @@
                 <div class="col-9 pt-3">
                     <h2>{{ object.template.name }}</h2>
                     <p>Дата и время мероприятия: {{ object.datetime }}</p>
+                    {% if object.template.file %}
+                    <p><a href="{{ object.template.file.url }}">Скачать файл</a> с описанием экскурсии.</p>
+                    {% endif %}
                     <p><a href="{% url 'profile_event_change' object.id %}">Редактировать</a></p>
 
                     <table class="table table-hover">
