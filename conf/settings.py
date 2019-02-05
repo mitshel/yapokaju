@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'registration',
     'sorl.thumbnail',
     'widget_tweaks',
+    'phonenumber_field',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -149,18 +150,22 @@ USE_L10N = True
 
 USE_TZ = True
 
-STATIC_DIR = 'static'
+#STATIC_DIR = 'static'
+
+STATIC_URL = '/static/'
+STATIC_ROOT = 'static'
+
+STATICFILES_DIRS = [
+    'assets',
+]
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
-STATIC_URL = '/static/'
-
-STATIC_ROOT =  os.path.join(BASE_DIR, 'static')
-
+#STATIC_URL = '/static/'
+#STATIC_ROOT =  os.path.join(BASE_DIR, 'assets')
 MEDIA_URL = '/media/'
-
 MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
 
 
@@ -184,3 +189,4 @@ DEFAULT_FROM_EMAIL = "admin@yapokaju.ru"
 ACCOUNT_ACTIVATION_DAYS = 3
 
 REGISTRATION_FORM = 'apps.account.forms.RegistrationForm'
+LOGOUT_REDIRECT_URL = '/'

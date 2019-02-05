@@ -13,18 +13,17 @@
                 <div class="col-9 pt-3">
                     <h2>Мой профиль</h2>
                     {% if user.is_volunteer %}
-                    <div class="mb-3">
-                        Уважаемый волонтер. Здесь, используя раздел "События" Вы можете запланировать оказание помощи, выбрав экскурсию, которое Вы сможете провести.
-                    При этом необходимо указать дату, время и выбрать ограничения для проведения экскурсии (например, Ваш автомобиль не может вместить коляску).
-                    Просим Вас периодически проверять подписки на созданные Вами события и самостоятельно связываться и обговаривать детали поезки с лицами,
-                    подписавшимися на них.
+                    <div class="jumbotron jumbotron-fluid p-3" style="background-color: #F0F9FF">
+                        <p class="lead"> Уважаемый <b>{{ user.last_name }} {{ user.first_name }}</b>. Здесь, используя раздел "События" Вы можете выступить в качестве волонтера и
+                            запланировать оказание помощи, выбрав экскурсию, которое Вы сможете провести.
+                            При этом необходимо указать дату, время и выбрать ограничения для проведения экскурсии (например, Ваш автомобиль не может вместить коляску).
+                            Просим Вас периодически проверять подписки на созданные Вами события и самостоятельно связываться и обговаривать детали поезки с лицами,
+                            подписавшимися на них.</p>
                     </div>
                     {% else %}
-                    <div class="mb-3">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                        occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    <div class="jumbotron jumbotron-fluid p-3" style="background-color: #F0F9FF">
+                        <p class="lead"> Уважаемый <b>{{ user.last_name }} {{ user.first_name }}</b>. Вы можете воспользоваться помощью волонтеров, выбрав подготовленные ими мероприятия на
+                            <a href="{% url 'homepage' %}#allEvents">главной странице сайта</a>. Ниже показаны уже выбранные Вами мероприятия. Волонтер, запланировавший их должен связаться с Вами в ближайшее время.
                     </div>
                     <p class="h4">Мои меропрития</p>
                     <table class="table table-hover">
