@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'registration',
     'sorl.thumbnail',
     'widget_tweaks',
-    'phonenumber_field',
 
     'django.contrib.admin',
     'django.contrib.auth',
