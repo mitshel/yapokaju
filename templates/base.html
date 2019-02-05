@@ -116,7 +116,7 @@
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand"
-               href="{% url 'homepage' %}">Я Покажу</a>
+               href="{% url 'homepage' %}">Я ПОКАЖУ</a>
             <button class="navbar-toggler"
                     type="button"
                     data-toggle="collapse"
@@ -142,16 +142,16 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link"
-                           href="{% url 'auth_logout' %}">{% trans 'Logout' %}</a>
+                           href="{% url 'auth_logout' %}">Выход</a>
                     </li>
                     {% else %}
                     <li class="nav-item">
                         <a class="nav-link"
-                           href="{% url 'auth_login' %}">{% trans 'Log in' %}</a>
+                           href="{% url 'auth_login' %}">Вход</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link"
-                           href="{% url 'registration_register' %}">{% trans 'Register' %}</a>
+                           href="{% url 'registration_register' %}">Регистрация</a>
                     </li>
                     {% endif %}
                 </ul>
@@ -159,13 +159,13 @@
         </div>
     </nav>
     {% block content %}{% endblock content %}
+    <!--
     <section class="section-footer">
-        <div class="section-wrapper">
             <div class="container">
                 <div class="text-white">{% now 'Y' %}</div>
             </div>
-        </div>
     </section>
+    -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
             integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
             crossorigin="anonymous"></script>

@@ -1,13 +1,14 @@
 from django import forms
 from django.forms import widgets
+#from phonenumber_field.formfields import PhoneNumberField
 
 from apps.clndr.models import EventDatetime, EventFeedback
 
 
 class EventSingUpForm(forms.Form):
-    datetime = forms.ModelChoiceField(queryset=EventDatetime.objects.all())
-    phone = forms.CharField()
-
+    datetime = forms.ModelChoiceField(queryset=EventDatetime.objects.all(),label='Дата')
+    phone = forms.CharField(label='Телефон',)
+    #phone = PhoneNumberField(label='Телефон')
 
 class EventFeedbackForm(forms.ModelForm):
 

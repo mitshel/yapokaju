@@ -4,6 +4,8 @@ from .views import (ProfileEventChangeView, ProfileEventCreateView,
                     ProfileEventDeleteView, ProfileEventDetailView,
                     ProfileEventListView, ProfileSettingsView, ProfileView)
 
+from apps.core.views import HomepageView
+
 urlpatterns = [
     path('', include('registration.backends.default.urls')),
 

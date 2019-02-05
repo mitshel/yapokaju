@@ -116,7 +116,7 @@ class EventCreateStepOnceForm(BetterForm):
 
         self.fields['time'].help_text = ' '.join([
             'Текущее время:',
-            timezone.localtime(today).strftime("%H:%M МСК"),
+            timezone.localtime(today).strftime("%H:%M"),
         ])
 
 
@@ -366,7 +366,7 @@ class EventCreateStepRepeatedlyForm(BetterForm):
 
         self.fields['time'].help_text = ' '.join([
             'Текущее время:',
-            timezone.localtime(today).strftime("%H:%M МСК"),
+            timezone.localtime(today).strftime("%H:%M"),
         ])
 
 
