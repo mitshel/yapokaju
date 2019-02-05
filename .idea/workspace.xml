@@ -92,7 +92,7 @@
         <counts>
           <entry key="gitignore" value="40" />
           <entry key="html" value="1272" />
-          <entry key="py" value="368" />
+          <entry key="py" value="459" />
           <entry key="txt" value="5" />
         </counts>
       </usages-collector>
@@ -100,7 +100,7 @@
         <counts>
           <entry key="HTML" value="1272" />
           <entry key="PLAIN_TEXT" value="45" />
-          <entry key="Python" value="368" />
+          <entry key="Python" value="459" />
         </counts>
       </usages-collector>
     </session>
@@ -190,8 +190,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/apps/clndr/signals.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="16" column="34" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
+            <state relative-caret-position="391">
+              <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
             </state>
           </provider>
         </entry>
@@ -702,8 +702,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/clndr/signals.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="16" column="34" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
+        <state relative-caret-position="391">
+          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
         </state>
       </provider>
     </entry>

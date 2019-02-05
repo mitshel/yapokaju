@@ -17,13 +17,15 @@ def send_mail_to_organizer(sender, instance, created, **kwargs):
             'Уважаемый ВОЛОНТЕР.\n'
             'На Ваше мероприятие',
             '"' + instance.event.template.name + '"',
-            'запланированное время:',
-            timezone.localtime(instance.datetime.datetime).strftime('%d.%m.%Y г. в %H:%M (МСК)'),
-            'подписался(лась)',
+            ', дата:',
+            timezone.localtime(instance.datetime.datetime).strftime('%d.%m.%Y г.'),
+            ', подписался(лась)',
             instance.user.get_full_name(),
+            '.\nE-mail: ',
             instance.user.email,
-            format_phone(instance.user.phone),'\n',
-            'Пожалуйста свяжитесь с человеком, которому требуется Ваша помощь по указанному телефону, для обсуждения деталей экскурсии'
+            '\nТелефон: ',
+            format_phone(instance.user.phone),'.\n',
+            'Пожалуйста, свяжитесь с человеком, которому требуется Ваша помощь, по указанному телефону или электронной почте, для обсуждения деталей экскурсии.'
         ])
         email = EmailMessage(subject, text, settings.DEFAULT_FROM_EMAIL, [instance.event.user.email, ])
         email.send()
