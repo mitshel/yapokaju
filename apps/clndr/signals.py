@@ -18,7 +18,7 @@ def send_mail_to_organizer(sender, instance, created, **kwargs):
             'На Ваше мероприятие',
             '"' + instance.event.template.name + '"',
             ', дата:',
-            timezone.localtime(instance.datetime.datetime).strftime('%d.%m.%Y г.'),
+            timezone.localtime(instance.datetime.datetime).strftime('%d.%m.%Y'),
             ', подписался(лась)',
             instance.user.get_full_name(),
             '.\nE-mail: ',
