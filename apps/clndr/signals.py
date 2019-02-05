@@ -14,7 +14,7 @@ def send_mail_to_organizer(sender, instance, created, **kwargs):
     if created:
         subject = 'Подписка на мероприятие'
         text = ' '.join([
-            'Уважаемый ВОЛОНТЕР.'
+            'Уважаемый ВОЛОНТЕР.\n'
             'На Ваше мероприятие',
             '"' + instance.event.template.name + '"',
             'запланированное время:',

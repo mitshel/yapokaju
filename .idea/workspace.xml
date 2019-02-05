@@ -92,7 +92,7 @@
         <counts>
           <entry key="gitignore" value="40" />
           <entry key="html" value="1272" />
-          <entry key="py" value="366" />
+          <entry key="py" value="368" />
           <entry key="txt" value="5" />
         </counts>
       </usages-collector>
@@ -100,7 +100,7 @@
         <counts>
           <entry key="HTML" value="1272" />
           <entry key="PLAIN_TEXT" value="45" />
-          <entry key="Python" value="366" />
+          <entry key="Python" value="368" />
         </counts>
       </usages-collector>
     </session>
@@ -190,8 +190,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/apps/clndr/signals.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="25" column="12" selection-start-line="25" selection-start-column="12" selection-end-line="25" selection-end-column="12" />
+            <state relative-caret-position="136">
+              <caret line="16" column="34" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -251,7 +251,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="64" />
     <option name="y" value="315" />
     <option name="width" value="1936" />
@@ -702,8 +702,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/clndr/signals.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="25" column="12" selection-start-line="25" selection-start-column="12" selection-end-line="25" selection-end-column="12" />
+        <state relative-caret-position="136">
+          <caret line="16" column="34" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
         </state>
       </provider>
     </entry>
