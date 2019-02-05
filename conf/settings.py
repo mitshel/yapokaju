@@ -168,17 +168,17 @@ MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
 
 EMAIL_HOST = "smtp.beget.com"
 
-EMAIL_HOST_USER = "demo@launchweb.ru"
+EMAIL_HOST_USER = "admin@yapokaju.ru"
 
-EMAIL_HOST_PASSWORD = "mQS8sv%o"
+EMAIL_HOST_PASSWORD = "*OMAr7*L"
 
 EMAIL_PORT = 465
 
 EMAIL_USE_SSL = True
 
-SERVER_EMAIL = "demo@launchweb.ru"
+SERVER_EMAIL = "admin@yapokaju.ru"
 
-DEFAULT_FROM_EMAIL = "demo@launchweb.ru"
+DEFAULT_FROM_EMAIL = "admin@yapokaju.ru"
 
 
 ACCOUNT_ACTIVATION_DAYS = 3
