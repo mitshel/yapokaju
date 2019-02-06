@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a4773a7f-2697-411f-91c3-5947052bd853" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/docs/problems.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/core/views/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/core/views/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/problems.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/problems.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -48,13 +49,13 @@
     <session id="586689462">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="4" />
+          <entry key="project.closed" value="5" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.17" value="1" />
-          <entry key="project.open.time.2" value="1" />
+          <entry key="project.open.time.2" value="2" />
           <entry key="project.open.time.8" value="1" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="5" />
+          <entry key="project.opened" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -74,7 +75,7 @@
           <entry key="js" value="1" />
           <entry key="md" value="2" />
           <entry key="png" value="10" />
-          <entry key="py" value="31" />
+          <entry key="py" value="33" />
           <entry key="thumbnail_kvstore" value="1" />
           <entry key="txt" value="3" />
         </counts>
@@ -87,24 +88,24 @@
           <entry key="JavaScript" value="1" />
           <entry key="Markdown" value="2" />
           <entry key="PLAIN_TEXT" value="5" />
-          <entry key="Python" value="31" />
+          <entry key="Python" value="33" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="gitignore" value="40" />
           <entry key="html" value="1272" />
-          <entry key="md" value="795" />
-          <entry key="py" value="487" />
+          <entry key="md" value="850" />
+          <entry key="py" value="491" />
           <entry key="txt" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="1272" />
-          <entry key="Markdown" value="795" />
+          <entry key="Markdown" value="850" />
           <entry key="PLAIN_TEXT" value="45" />
-          <entry key="Python" value="487" />
+          <entry key="Python" value="491" />
         </counts>
       </usages-collector>
     </session>
@@ -112,19 +113,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/core/forms.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" selection-start-line="2" selection-end-line="2" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apps/account/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="884">
-              <caret line="58" column="16" selection-start-line="58" selection-start-column="4" selection-end-line="58" selection-end-column="16" />
+            <state relative-caret-position="204">
+              <caret line="12" selection-start-line="12" selection-end-line="12" />
               <folding>
                 <element signature="e#0#151#0" expanded="true" />
               </folding>
@@ -133,14 +125,13 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/core/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <folding>
-                <element signature="e#0#52#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
+        <entry file="file://$PROJECT_DIR$/apps/clndr/views.py">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/apps/account/views.py">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -152,11 +143,14 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/apps/core/views/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="62" selection-start-line="11" selection-start-column="47" selection-end-line="11" selection-end-column="62" />
+            <state relative-caret-position="164">
+              <caret line="152" lean-forward="true" selection-start-line="152" selection-end-line="152" />
+              <folding>
+                <element signature="e#0#30#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -164,8 +158,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apps/clndr/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1054">
-              <caret line="68" column="23" selection-start-line="68" selection-start-column="23" selection-end-line="68" selection-end-column="23" />
+            <state relative-caret-position="181">
+              <caret line="123" column="9" selection-start-line="123" selection-start-column="6" selection-end-line="123" selection-end-column="9" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -185,21 +179,18 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apps/clndr/signals.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="34" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
-              <folding>
-                <element signature="e#0#32#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="136">
+              <caret line="8" column="25" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/docs/problems.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
               <first_editor relative-caret-position="85">
-                <caret line="5" column="43" selection-start-line="5" selection-start-column="43" selection-end-line="5" selection-end-column="43" />
+                <caret line="5" column="42" selection-start-line="5" selection-start-column="42" selection-end-line="5" selection-end-column="42" />
               </first_editor>
               <second_editor />
             </state>
@@ -223,6 +214,10 @@
       <find>eventDet</find>
       <find>EventSingUpForm</find>
       <find>подписалися</find>
+      <find>send_mail_to_organizer</find>
+      <find>post_save</find>
+      <find>Mem</find>
+      <find>member</find>
     </findStrings>
     <dirStrings>
       <dir>D:\Мои документы\Projects\yapokazhu\templates\betterforms</dir>
@@ -247,6 +242,7 @@
         <option value="$PROJECT_DIR$/conf/settings.py" />
         <option value="$PROJECT_DIR$/apps/clndr/signals.py" />
         <option value="$PROJECT_DIR$/docs/problems.md" />
+        <option value="$PROJECT_DIR$/apps/core/views/__init__.py" />
       </list>
     </option>
   </component>
@@ -283,33 +279,37 @@
             <path>
               <item name="yapokazhu" type="b2602c69:ProjectViewProjectNode" />
               <item name="yapokazhu" type="462c0819:PsiDirectoryNode" />
+              <item name="apps" type="462c0819:PsiDirectoryNode" />
+              <item name="account" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="yapokazhu" type="b2602c69:ProjectViewProjectNode" />
+              <item name="yapokazhu" type="462c0819:PsiDirectoryNode" />
+              <item name="apps" type="462c0819:PsiDirectoryNode" />
+              <item name="clndr" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="yapokazhu" type="b2602c69:ProjectViewProjectNode" />
+              <item name="yapokazhu" type="462c0819:PsiDirectoryNode" />
+              <item name="apps" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="yapokazhu" type="b2602c69:ProjectViewProjectNode" />
+              <item name="yapokazhu" type="462c0819:PsiDirectoryNode" />
+              <item name="apps" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="yapokazhu" type="b2602c69:ProjectViewProjectNode" />
+              <item name="yapokazhu" type="462c0819:PsiDirectoryNode" />
               <item name="conf" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="yapokazhu" type="b2602c69:ProjectViewProjectNode" />
               <item name="yapokazhu" type="462c0819:PsiDirectoryNode" />
-              <item name="media" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="yapokazhu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="yapokazhu" type="462c0819:PsiDirectoryNode" />
-              <item name="media" type="462c0819:PsiDirectoryNode" />
-              <item name="cache" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="yapokazhu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="yapokazhu" type="462c0819:PsiDirectoryNode" />
-              <item name="media" type="462c0819:PsiDirectoryNode" />
-              <item name="cache" type="462c0819:PsiDirectoryNode" />
-              <item name="4c" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="yapokazhu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="yapokazhu" type="462c0819:PsiDirectoryNode" />
-              <item name="media" type="462c0819:PsiDirectoryNode" />
-              <item name="cache" type="462c0819:PsiDirectoryNode" />
-              <item name="4c" type="462c0819:PsiDirectoryNode" />
-              <item name="65" type="462c0819:PsiDirectoryNode" />
+              <item name="docs" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -389,7 +389,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18176973" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18336888" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -420,9 +420,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/templates/registration/password_reset_done.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/registration/password_reset_form.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -496,11 +493,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/registration/logout.html">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/account/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-510" />
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/account/urls.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -635,16 +627,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/account/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="884">
-          <caret line="58" column="16" selection-start-line="58" selection-start-column="4" selection-end-line="58" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#151#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/apps/core/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -661,23 +643,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/core/views/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="62" selection-start-line="11" selection-start-column="47" selection-end-line="11" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/clndr/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1054">
-          <caret line="68" column="23" selection-start-line="68" selection-start-column="23" selection-end-line="68" selection-end-column="23" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/conf/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="748">
@@ -688,23 +653,56 @@
     <entry file="file://$PROJECT_DIR$/media/cache/4c/65/4c6585952db7e9e5510778dc21a4a0b6.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/clndr/signals.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="34" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/docs/problems.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="85">
-            <caret line="5" column="43" selection-start-line="5" selection-start-column="43" selection-end-line="5" selection-end-column="43" />
+            <caret line="5" column="42" selection-start-line="5" selection-start-column="42" selection-end-line="5" selection-end-column="42" />
           </first_editor>
           <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/clndr/signals.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="25" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/clndr/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="181">
+          <caret line="123" column="9" selection-start-line="123" selection-start-column="6" selection-end-line="123" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/account/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
+          <folding>
+            <element signature="e#0#151#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/account/views.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/clndr/views.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/core/views/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="164">
+          <caret line="152" lean-forward="true" selection-start-line="152" selection-end-line="152" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -151,6 +151,11 @@ class EventDetailView(SingleObjectMixin, MultiFormsView):
     def singup_form_valid(self, form):
         datetime = form.cleaned_data['datetime']
 
+        phone = clear_phone(form.cleaned_data['phone'])
+        if phone != self.request.user.phone:
+            self.request.user.phone = phone
+            self.request.user.save()
+
         member = Member.objects.create(user=self.request.user,
                                        event=self.object,
                                        datetime=datetime)
@@ -158,10 +163,6 @@ class EventDetailView(SingleObjectMixin, MultiFormsView):
         datetime.free = False
         datetime.save()
 
-        phone = clear_phone(form.cleaned_data['phone'])
-        if phone != self.request.user.phone:
-            self.request.user.phone = phone
-            self.request.user.save()
         return HttpResponseRedirect(self.object.get_absolute_url())
 
     def feedback_form_valid(self, form):
