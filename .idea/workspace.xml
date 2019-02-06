@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a4773a7f-2697-411f-91c3-5947052bd853" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/core/views/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/core/views/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/problems.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/problems.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/core/homepage.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/core/homepage.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -70,7 +69,7 @@
           <entry key="django_flatpage" value="1" />
           <entry key="django_flatpage_sites" value="1" />
           <entry key="gitignore" value="2" />
-          <entry key="html" value="24" />
+          <entry key="html" value="25" />
           <entry key="jpg" value="9" />
           <entry key="js" value="1" />
           <entry key="md" value="2" />
@@ -83,7 +82,7 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Database Element" value="10" />
-          <entry key="HTML" value="24" />
+          <entry key="HTML" value="25" />
           <entry key="Image" value="19" />
           <entry key="JavaScript" value="1" />
           <entry key="Markdown" value="2" />
@@ -94,16 +93,16 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="gitignore" value="40" />
-          <entry key="html" value="1272" />
-          <entry key="md" value="850" />
+          <entry key="html" value="1296" />
+          <entry key="md" value="1114" />
           <entry key="py" value="491" />
           <entry key="txt" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="1272" />
-          <entry key="Markdown" value="850" />
+          <entry key="HTML" value="1296" />
+          <entry key="Markdown" value="1114" />
           <entry key="PLAIN_TEXT" value="45" />
           <entry key="Python" value="491" />
         </counts>
@@ -135,19 +134,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1853">
-              <caret line="109" column="6" selection-start-line="109" selection-start-column="6" selection-end-line="109" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/apps/core/views/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="164">
-              <caret line="152" lean-forward="true" selection-start-line="152" selection-end-line="152" />
+            <state relative-caret-position="181">
+              <caret line="153" column="52" selection-start-line="153" selection-start-column="52" selection-end-line="153" selection-end-column="52" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
               </folding>
@@ -189,10 +179,22 @@
         <entry file="file://$PROJECT_DIR$/docs/problems.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="85">
-                <caret line="5" column="42" selection-start-line="5" selection-start-column="42" selection-end-line="5" selection-end-column="42" />
+              <first_editor relative-caret-position="357">
+                <caret line="21" column="24" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
               </first_editor>
               <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/core/homepage.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="109">
+              <caret line="157" column="16" lean-forward="true" selection-start-line="157" selection-start-column="16" selection-end-line="157" selection-end-column="16" />
+              <folding>
+                <element signature="e#3847#3939#0#HTML" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -229,7 +231,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/templates/core/homepage.html" />
         <option value="$PROJECT_DIR$/templates/registration/logout.html" />
         <option value="$PROJECT_DIR$/conf/urls.py" />
         <option value="$PROJECT_DIR$/apps/account/urls.py" />
@@ -241,8 +242,9 @@
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/conf/settings.py" />
         <option value="$PROJECT_DIR$/apps/clndr/signals.py" />
-        <option value="$PROJECT_DIR$/docs/problems.md" />
         <option value="$PROJECT_DIR$/apps/core/views/__init__.py" />
+        <option value="$PROJECT_DIR$/docs/problems.md" />
+        <option value="$PROJECT_DIR$/templates/core/homepage.html" />
       </list>
     </option>
   </component>
@@ -279,37 +281,23 @@
             <path>
               <item name="yapokazhu" type="b2602c69:ProjectViewProjectNode" />
               <item name="yapokazhu" type="462c0819:PsiDirectoryNode" />
-              <item name="apps" type="462c0819:PsiDirectoryNode" />
-              <item name="account" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="yapokazhu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="yapokazhu" type="462c0819:PsiDirectoryNode" />
-              <item name="apps" type="462c0819:PsiDirectoryNode" />
-              <item name="clndr" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="yapokazhu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="yapokazhu" type="462c0819:PsiDirectoryNode" />
-              <item name="apps" type="462c0819:PsiDirectoryNode" />
-              <item name="core" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="yapokazhu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="yapokazhu" type="462c0819:PsiDirectoryNode" />
-              <item name="apps" type="462c0819:PsiDirectoryNode" />
-              <item name="core" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="yapokazhu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="yapokazhu" type="462c0819:PsiDirectoryNode" />
               <item name="conf" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="yapokazhu" type="b2602c69:ProjectViewProjectNode" />
               <item name="yapokazhu" type="462c0819:PsiDirectoryNode" />
               <item name="docs" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="yapokazhu" type="b2602c69:ProjectViewProjectNode" />
+              <item name="yapokazhu" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="yapokazhu" type="b2602c69:ProjectViewProjectNode" />
+              <item name="yapokazhu" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -387,14 +375,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18336888" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18336888" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32936078" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32936078" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -403,7 +390,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.32936078" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.32936078" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32936078" />
       <window_info anchor="bottom" id="Database Console" order="13" weight="0.32936078" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -476,13 +463,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/account/tests.py">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/core/homepage.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
-          <caret line="178" column="26" selection-start-line="178" selection-start-column="26" selection-end-line="178" selection-end-column="26" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/registration/registration_base.html">
       <provider selected="true" editor-type-id="text-editor">
@@ -653,16 +633,6 @@
     <entry file="file://$PROJECT_DIR$/media/cache/4c/65/4c6585952db7e9e5510778dc21a4a0b6.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/problems.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="85">
-            <caret line="5" column="42" selection-start-line="5" selection-start-column="42" selection-end-line="5" selection-end-column="42" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/apps/clndr/signals.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -698,10 +668,30 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/core/views/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="152" lean-forward="true" selection-start-line="152" selection-end-line="152" />
+        <state relative-caret-position="181">
+          <caret line="153" column="52" selection-start-line="153" selection-start-column="52" selection-end-line="153" selection-end-column="52" />
           <folding>
             <element signature="e#0#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/problems.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="357">
+            <caret line="21" column="24" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/core/homepage.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="109">
+          <caret line="157" column="16" lean-forward="true" selection-start-line="157" selection-start-column="16" selection-end-line="157" selection-end-column="16" />
+          <folding>
+            <element signature="e#3847#3939#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
