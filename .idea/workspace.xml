@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a4773a7f-2697-411f-91c3-5947052bd853" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/templates/core/homepage.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/core/homepage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/core/event_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/core/event_detail.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -68,12 +69,12 @@
           <entry key="django_flatpage" value="1" />
           <entry key="django_flatpage_sites" value="1" />
           <entry key="gitignore" value="2" />
-          <entry key="html" value="26" />
+          <entry key="html" value="27" />
           <entry key="jpg" value="18" />
           <entry key="js" value="1" />
-          <entry key="md" value="2" />
+          <entry key="md" value="3" />
           <entry key="png" value="10" />
-          <entry key="py" value="33" />
+          <entry key="py" value="34" />
           <entry key="thumbnail_kvstore" value="1" />
           <entry key="txt" value="3" />
         </counts>
@@ -81,18 +82,18 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Database Element" value="10" />
-          <entry key="HTML" value="26" />
+          <entry key="HTML" value="27" />
           <entry key="Image" value="28" />
           <entry key="JavaScript" value="1" />
-          <entry key="Markdown" value="2" />
+          <entry key="Markdown" value="3" />
           <entry key="PLAIN_TEXT" value="5" />
-          <entry key="Python" value="33" />
+          <entry key="Python" value="34" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="gitignore" value="40" />
-          <entry key="html" value="1301" />
+          <entry key="html" value="1383" />
           <entry key="md" value="1114" />
           <entry key="py" value="491" />
           <entry key="txt" value="5" />
@@ -100,7 +101,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="1301" />
+          <entry key="HTML" value="1383" />
           <entry key="Markdown" value="1114" />
           <entry key="PLAIN_TEXT" value="45" />
           <entry key="Python" value="491" />
@@ -111,55 +112,40 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/media/cache/4e/2b/4e2bb3b8c0f410d5e27963e267c52822.jpg">
-          <provider selected="true" editor-type-id="images" />
+        <entry file="file://$PROJECT_DIR$/templates/core/homepage.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="262">
+              <caret line="166" column="63" selection-start-line="166" selection-start-column="63" selection-end-line="166" selection-end-column="63" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/media/cache/4b/18/4b18d06e5cb03c5d960fe1e1c108b07a.jpg">
-          <provider selected="true" editor-type-id="images" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/media/cache/3f/88/3f8895f7e6717090795f9a0991dfbb23.jpg">
-          <provider selected="true" editor-type-id="images" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/media/cache/2f/77/2f77bda19a121b41261978762fd0b873.jpg">
-          <provider selected="true" editor-type-id="images" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/media/cache/1e/73/1e73cea6fb079c31cb52d4b8e6a23626.jpg">
-          <provider selected="true" editor-type-id="images" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/media/cache/1c/3c/1c3cdab5a02a72425dc92ee054d15ebb.jpg">
-          <provider selected="true" editor-type-id="images" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/media/cache/00/ee/00ee251ee2b219341c3f64aff2e2c356.jpg">
-          <provider selected="true" editor-type-id="images" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/media/cache/4f/92/4f923a3320c550133f0c539847198c6b.jpg">
-          <provider selected="true" editor-type-id="images" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/static/core/img/7f70092ccec4907d4874f318b2f389e7.jpg">
-          <provider selected="true" editor-type-id="images" />
+        <entry file="file://$PROJECT_DIR$/docs/problems.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="85">
+                <caret line="5" column="137" lean-forward="true" selection-start-line="5" selection-start-column="78" selection-end-line="5" selection-end-column="137" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/templates/core/homepage.html">
+        <entry file="file://$PROJECT_DIR$/templates/core/event_detail.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="381">
-              <caret line="173" column="121" selection-start-line="173" selection-start-column="121" selection-end-line="173" selection-end-column="121" />
+            <state relative-caret-position="347">
+              <caret line="90" column="165" selection-start-line="90" selection-start-column="165" selection-end-line="90" selection-end-column="165" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/apps/account/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="12" column="53" selection-start-line="12" selection-start-column="46" selection-end-line="12" selection-end-column="53" />
             </state>
           </provider>
         </entry>
@@ -205,6 +191,7 @@
         <option value="$PROJECT_DIR$/apps/core/views/__init__.py" />
         <option value="$PROJECT_DIR$/docs/problems.md" />
         <option value="$PROJECT_DIR$/templates/core/homepage.html" />
+        <option value="$PROJECT_DIR$/templates/core/event_detail.html" />
       </list>
     </option>
   </component>
@@ -237,6 +224,17 @@
               <item name="yapokazhu" type="b2602c69:ProjectViewProjectNode" />
               <item name="yapokazhu" type="462c0819:PsiDirectoryNode" />
               <item name="apps" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="yapokazhu" type="b2602c69:ProjectViewProjectNode" />
+              <item name="yapokazhu" type="462c0819:PsiDirectoryNode" />
+              <item name="apps" type="462c0819:PsiDirectoryNode" />
+              <item name="account" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="yapokazhu" type="b2602c69:ProjectViewProjectNode" />
+              <item name="yapokazhu" type="462c0819:PsiDirectoryNode" />
+              <item name="docs" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="yapokazhu" type="b2602c69:ProjectViewProjectNode" />
@@ -350,7 +348,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32936078" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32936078" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -359,7 +357,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.32936078" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.32936078" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32936078" />
       <window_info anchor="bottom" id="Database Console" order="13" weight="0.32936078" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -410,13 +408,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/registration/logout.html">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/account/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="82" selection-start-line="13" selection-start-column="82" selection-end-line="13" selection-end-column="82" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/base.html">
       <provider selected="true" editor-type-id="text-editor">
@@ -522,11 +513,6 @@
     <entry file="file://$PROJECT_DIR$/templates/account/event_detail.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/core/event_detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1173" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/apps/core/signals.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -610,16 +596,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/problems.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="357">
-            <caret line="21" column="24" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/media/cache/4c/65/4c6585952db7e9e5510778dc21a4a0b6.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -652,8 +628,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/core/homepage.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="381">
-          <caret line="173" column="121" selection-start-line="173" selection-start-column="121" selection-end-line="173" selection-end-column="121" />
+        <state relative-caret-position="262">
+          <caret line="166" column="63" selection-start-line="166" selection-start-column="63" selection-end-line="166" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/problems.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="85">
+            <caret line="5" column="137" lean-forward="true" selection-start-line="5" selection-start-column="78" selection-end-line="5" selection-end-column="137" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/account/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="12" column="53" selection-start-line="12" selection-start-column="46" selection-end-line="12" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/core/event_detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="347">
+          <caret line="90" column="165" selection-start-line="90" selection-start-column="165" selection-end-line="90" selection-end-column="165" />
         </state>
       </provider>
     </entry>
