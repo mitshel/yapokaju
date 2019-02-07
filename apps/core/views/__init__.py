@@ -6,6 +6,7 @@ from django.views.generic import TemplateView
 from django.views.generic.base import TemplateResponseMixin
 from django.views.generic.detail import SingleObjectMixin
 from django.views.generic.edit import ProcessFormView
+from django.conf import settings
 
 from apps.account.forms import RegistrationForm
 from apps.clndr.models import Event, EventDatetime, EventFeedback, Member
@@ -13,6 +14,7 @@ from apps.core.forms import EventFeedbackForm, EventSingUpForm
 from apps.core.utils import clear_phone
 
 from .mixins import MultiFormMixin
+from  apps.clndr.models import Member
 
 
 # Create your views here.
@@ -125,8 +127,14 @@ class EventDetailView(SingleObjectMixin, MultiFormsView):
 
         member_list = self.object.members.filter(user_id=self.request.user.id,
                                                  datetime__datetime__gte=self.object.datetime)
+        all_subscriptions_count = Member.objects.filter(user_id=self.request.user.id,
+                                                 datetime__datetime__gte=timezone.now()).count()
+        print(all_subscriptions_count)
         context_data['member_list'] = member_list
-        context_data['show_singup_form'] = not member_list and self._get_datetime_queryset()
+        context_data['so_many_subscriptions'] = all_subscriptions_count >= settings.MAX_SUBSCRIPTIONS
+        context_data['MAX_SUBSCRIPTION'] = settings.MAX_SUBSCRIPTIONS
+        context_data['show_singup_form'] = not member_list and self._get_datetime_queryset() and not context_data['so_many_subscriptions']
+
         context_data['feedback_list'] = EventFeedback.objects \
             .filter(Q(event=self.object), Q(show=True) | Q(show=False, user_id=self.request.user.id))
                  
