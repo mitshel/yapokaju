@@ -82,7 +82,7 @@ class EventManager(models.Manager):
 
 class Event(TimestampsMixin):
     time_by_agreement = models.BooleanField('время по договоренности', default=False)
-    comment = models.TextField('комментарий', max_length=2048, default='')
+    comment = models.TextField('комментарий', max_length=2048, default='', blank=True)
     recursive = models.BooleanField('повторяющиеся', default=False)
     template = models.ForeignKey('clndr.Template', verbose_name='шаблон мероприятия',
                                  null=True, on_delete=models.SET_NULL)
