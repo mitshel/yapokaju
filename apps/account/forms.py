@@ -397,7 +397,8 @@ class EventDatetimeForm(forms.ModelForm):
 
         self.fields['datetime'].help_text = ' '.join([
             'Текущяя дата и время:',
-            timezone.localtime(today).strftime("%d.%m.%Y %H:%M МСК"),
+            today.strftime("%d.%m.%Y %H:%M"),
+            #timezone.localtime(today).strftime("%d.%m.%Y %H:%M МСК"),
         ])
 
 
