@@ -87,49 +87,68 @@
                             </div>
                         </div>
                         {% else %}
-                            <p class="mb-3">
+                        <div class="card mb-4">
+                          <div class="card-body">
+                            <h5 class="card-title">Информация</h5>
+                            <p class="card-text">
                                 Подписка на участие в мероприятии недоступна для волонтеров, но Вы можете <a href="{% url 'profile' %}">создать свое мероприятие</a>.
                             </p>
+                          </div>
+                        </div>
                         {% endif %}
                     {% elif member_list.0 %}
-                    <p class="mb-3">
-                        Вы зарегестрированны на данное мероприятие: {{ member_list.0.datetime.datetime|date:"d F Y г." }}
-                        {% if not object.time_by_agreement %}
-                            в {{ member_list.0.datetime.datetime|date:"H:i" }}
-                        {% else %}
-                            <br>Время по договоренности
-                        {% endif %}
-                    </p>
-                    <form action="" method="POST">
-                        {% csrf_token %}
-                        <div class="form-group mb-0">
-                            <button class="btn btn-secondary btn-block"
-                                type="submit"
-                                name="action"
-                                value="singdown">Отменить</button>
+                        <div class="card mb-4">
+                          <div class="card-body">
+                            <h5 class="card-title">Информация</h5>
+                            <p class="card-text">
+                                Вы зарегестрированы на данное мероприятие: {{ member_list.0.datetime.datetime|date:"d F Y г." }}
+                                {% if not object.time_by_agreement %}
+                                    в {{ member_list.0.datetime.datetime|date:"H:i" }}
+                                {% else %}
+                                    <br>Время по договоренности
+                                {% endif %}
+                            </p>
+                            <form action="" method="POST">
+                                {% csrf_token %}
+                                <div class="form-group mb-0">
+                                    <button class="btn btn-secondary btn-block"
+                                        type="submit"
+                                        name="action"
+                                        value="singdown">Отменить</button>
+                                </div>
+                            </form>
+                          </div>
                         </div>
-                    </form>
-
                     {% elif so_many_subscriptions %}
-                         <p class="mb-3">
-                            Вы уже подписаны на максимально возможное количество мероприятий ({{ MAX_SUBSCRIPTION }} мероприятия.).
-                        </p>
+                        <div class="card mb-4">
+                          <div class="card-body">
+                            <h5 class="card-title">Информация</h5>
+                            <!--<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>-->
+                            <p class="card-text">Запись на мероприятие недоступна, так как Вы уже записаны на максимально возможное количество мероприятий ({{ MAX_SUBSCRIPTION }} мероприятия).
+                                Мероприятия, на которые Вы уже записаны можно посмотреть при помощи меню <a href="{%  url 'profile' %}">"Мой профиль"</a>
+                            </p>
+                          </div>
+                        </div>
                     {% else %}
                     <p class="mb-3">
                         Регистрация на мероприятия завершена.
                     </p>
                     {% endif %}
                     {% if object.restrictions.exists %}
-                    <div class="h5">Ограничения</div>
-                    <ul>
-                        {% for restriction in object.restrictions.all %}
-                        <li>
-                            {{ restriction.text }}
-                            <i class="fas fa-question-circle c-pointer"
-                                title="{{ restriction.description }}"></i>
-                        </li>
-                        {% endfor %}
-                    </ul>
+                        <div class="card mb-4">
+                          <div class="card-body">
+                            <h5 class="card-title">Ограничения</h5>
+                                <ul>
+                                    {% for restriction in object.restrictions.all %}
+                                    <li>
+                                        {{ restriction.text }}
+                                        <i class="fas fa-question-circle c-pointer"
+                                            title="{{ restriction.description }}"></i>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                          </div>
+                        </div>
                     {% endif %}
                 </div>
             </div>
