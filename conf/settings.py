@@ -172,17 +172,17 @@ MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
 
 EMAIL_HOST = "smtp.beget.com"
 
-EMAIL_HOST_USER = "admin@yapokaju.ru"
+EMAIL_HOST_USER = "no-reply@yapokaju.ru"
 
-EMAIL_HOST_PASSWORD = "*OMAr7*L"
+EMAIL_HOST_PASSWORD = "N5*iPxoX"
 
 EMAIL_PORT = 465
 
 EMAIL_USE_SSL = True
 
-SERVER_EMAIL = "admin@yapokaju.ru"
+SERVER_EMAIL = "no-reply@yapokaju.ru"
 
-DEFAULT_FROM_EMAIL = "admin@yapokaju.ru"
+DEFAULT_FROM_EMAIL = "no-reply@yapokaju.ru"
 
 
 ACCOUNT_ACTIVATION_DAYS = 3
