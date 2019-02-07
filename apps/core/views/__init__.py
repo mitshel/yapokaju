@@ -7,10 +7,11 @@ from django.views.generic.base import TemplateResponseMixin
 from django.views.generic.detail import SingleObjectMixin
 from django.views.generic.edit import ProcessFormView
 from django.conf import settings
+from django.db.models import Subquery
 
 from apps.account.forms import RegistrationForm
 from apps.clndr.models import Event, EventDatetime, EventFeedback, Member
-from apps.core.forms import EventFeedbackForm, EventSingUpForm
+from apps.core.forms import EventFeedbackForm, EventSingUpForm, EventSingDownForm
 from apps.core.utils import clear_phone
 
 from .mixins import MultiFormMixin
@@ -100,6 +101,7 @@ class HomepageView(MultiFormsView):
 class EventDetailView(SingleObjectMixin, MultiFormsView):
     form_classes = {
         'singup': EventSingUpForm,
+        'singdown': EventSingDownForm,
         'feedback': EventFeedbackForm
     }
 
@@ -170,6 +172,14 @@ class EventDetailView(SingleObjectMixin, MultiFormsView):
 
         datetime.free = False
         datetime.save()
+
+        return HttpResponseRedirect(self.object.get_absolute_url())
+
+    def singdown_form_valid(self, form):
+        member_objects = Member.objects.filter(user=self.request.user, event=self.object)
+        if member_objects:
+            EventDatetime.objects.filter(event=self.object, id__in=Subquery(member_objects.values('datetime'))).update(free=True)
+            member_objects.delete()
 
         return HttpResponseRedirect(self.object.get_absolute_url())
 

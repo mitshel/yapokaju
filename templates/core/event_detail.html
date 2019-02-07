@@ -100,6 +100,16 @@
                             <br>Время по договоренности
                         {% endif %}
                     </p>
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <div class="form-group mb-0">
+                            <button class="btn btn-success btn-block"
+                                type="submit"
+                                name="action"
+                                value="singdown">Отменить подписку</button>
+                        </div>
+                    </form>
+
                     {% elif so_many_subscriptions %}
                          <p class="mb-3">
                             Вы уже подписаны на максимально возможное количество мероприятий ({{ MAX_SUBSCRIPTION }} мероприятия.).

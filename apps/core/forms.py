@@ -10,6 +10,9 @@ class EventSingUpForm(forms.Form):
     phone = forms.CharField(label='Телефон',)
     #phone = PhoneNumberField(label='Телефон')
 
+class EventSingDownForm(forms.Form):
+    pass
+
 class EventFeedbackForm(forms.ModelForm):
 
     class Meta(object):
