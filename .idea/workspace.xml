@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a4773a7f-2697-411f-91c3-5947052bd853" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/apps/clndr/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/clndr/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/registration/activation_complete.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration/activation_complete.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -93,7 +93,7 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="gitignore" value="40" />
-          <entry key="html" value="1649" />
+          <entry key="html" value="1695" />
           <entry key="md" value="1255" />
           <entry key="py" value="503" />
           <entry key="txt" value="5" />
@@ -101,7 +101,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="1649" />
+          <entry key="HTML" value="1695" />
           <entry key="Markdown" value="1255" />
           <entry key="PLAIN_TEXT" value="45" />
           <entry key="Python" value="503" />
@@ -162,11 +162,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/registration/activation_complete.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" selection-start-line="14" selection-end-line="14" />
+            <state relative-caret-position="170">
+              <caret line="10" column="45" selection-start-line="10" selection-start-column="45" selection-end-line="10" selection-end-column="45" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
               </folding>
@@ -174,7 +174,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apps/clndr/models.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="283">
@@ -197,8 +197,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="31" column="199" selection-start-line="31" selection-start-column="199" selection-end-line="31" selection-end-column="199" />
+            <state relative-caret-position="181">
+              <caret line="150" column="51" lean-forward="true" selection-start-line="150" selection-start-column="41" selection-end-line="150" selection-end-column="51" />
             </state>
           </provider>
         </entry>
@@ -219,6 +219,7 @@
       <find>post_save</find>
       <find>Mem</find>
       <find>member</find>
+      <find>login</find>
     </findStrings>
     <dirStrings>
       <dir>D:\Мои документы\Projects\yapokazhu\templates\betterforms</dir>
@@ -246,8 +247,8 @@
         <option value="$PROJECT_DIR$/docs/problems.md" />
         <option value="$PROJECT_DIR$/templates/base.html" />
         <option value="$PROJECT_DIR$/templates/registration/registration_complete.html" />
-        <option value="$PROJECT_DIR$/templates/registration/activation_complete.html" />
         <option value="$PROJECT_DIR$/apps/clndr/models.py" />
+        <option value="$PROJECT_DIR$/templates/registration/activation_complete.html" />
       </list>
     </option>
   </component>
@@ -687,27 +688,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="31" column="199" selection-start-line="31" selection-start-column="199" selection-end-line="31" selection-end-column="199" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/registration/registration_complete.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" selection-start-line="6" selection-end-line="10" selection-end-column="6" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/registration/activation_complete.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
           <folding>
             <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
           </folding>
@@ -727,6 +711,23 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="283">
           <caret line="84" column="85" selection-start-line="84" selection-start-column="85" selection-end-line="84" selection-end-column="85" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="181">
+          <caret line="150" column="51" lean-forward="true" selection-start-line="150" selection-start-column="41" selection-end-line="150" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/registration/activation_complete.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="45" selection-start-line="10" selection-start-column="45" selection-end-line="10" selection-end-column="45" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
