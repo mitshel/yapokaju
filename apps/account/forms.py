@@ -90,7 +90,7 @@ class EventCreateStepOnceForm(BetterForm):
     }), help_text='Время московское.', required=False)
     time_by_agreement = forms.BooleanField(label='Время по договоренности',
                                            label_suffix='',
-                                           required=False)
+                                           required=False, initial=True)
     comment = forms.CharField(
         label='Комментарий',
         max_length=2048,
@@ -128,7 +128,7 @@ class EventCreateStepRepeatedlyForm(BetterForm):
     }), help_text='Время московское.', required=False)
     time_by_agreement = forms.BooleanField(label='Время по договоренности',
                                            label_suffix='',
-                                           required=False)
+                                           required=False, initial=True)
     comment = forms.CharField(
         label='Комментарий',
         max_length=2048,
