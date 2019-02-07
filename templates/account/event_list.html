@@ -26,7 +26,8 @@
                             <tr>
                                 <th style="width: 1px;">#</th>
                                 <th scope="col">Название</th>
-                                <th scope="col">Тип события</th>
+                                <th scope="col">Заявок</th>
+                                <th scope="col">Последняя дата</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -37,7 +38,9 @@
                                 <td>
                                     <a href="{% url 'profile_event_detail' event.id %}">{{ event.template.name }}</a>
                                 </td>
-                                <td>{{ event.template.get_type_display }}</td>
+                                <td>{% if event.members_count %}{{ event.members_count }}{% endif %}</td>
+                                <!--<td>{ { event.template.get_type_display } }</td>-->
+                                <td>{{ event.maxdate|date:"d.m.Y" }}</td>
                                 <td>
                                     <a class="text-danger"
                                        href="{% url 'profile_event_delete' event.id %}">Удалить</a>

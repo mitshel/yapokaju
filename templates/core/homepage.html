@@ -255,7 +255,7 @@
                             {% endif %}
                             <div class="tabs__panel-info mt-4">
                                 <div class="h5">
-                                    {{ event.datetime|date:"d F Y г." }}
+                                    {{ event.datetime|date:"d F Y г." }},
                                     {% if not event.time_by_agreement %}
                                         {{ event.datetime|date:"H:i" }}
                                     {% else %}

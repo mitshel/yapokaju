@@ -9,6 +9,7 @@ from django.urls import reverse_lazy
 from django.utils import timezone
 from django.views.generic import (DeleteView, DetailView, FormView, ListView,
                                   TemplateView, UpdateView)
+from django.db.models import Max, Count
 from extra_views import InlineFormSetFactory, UpdateWithInlinesView
 from formtools.wizard.views import SessionWizardView
 from registration.views import RegistrationView as BaseRegistrationView
@@ -81,6 +82,8 @@ class ProfileEventListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         queryset = super(ProfileEventListView, self).get_queryset()
         queryset = queryset.filter(user=self.request.user, datetime_set__isnull=False) \
+                           .annotate(maxdate=Max('datetime_set__datetime')) \
+                           .annotate(members_count = Count('members', distinct=True)) \
                            .order_by('-id').distinct()
         return queryset
 
