@@ -95,7 +95,7 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="gitignore" value="40" />
-          <entry key="html" value="3463" />
+          <entry key="html" value="3466" />
           <entry key="md" value="1261" />
           <entry key="py" value="1547" />
           <entry key="txt" value="5" />
@@ -103,7 +103,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="3463" />
+          <entry key="HTML" value="3466" />
           <entry key="Markdown" value="1261" />
           <entry key="PLAIN_TEXT" value="45" />
           <entry key="Python" value="1547" />
@@ -121,8 +121,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/core/event_detail.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="313">
-              <caret line="245" column="1" selection-start-line="245" selection-start-column="1" selection-end-line="257" selection-end-column="23" />
+            <state relative-caret-position="160">
+              <caret line="227" column="32" selection-start-line="227" selection-start-column="32" selection-end-line="227" selection-end-column="32" />
               <folding>
                 <element signature="e#9355#9390#0#HTML" expanded="true" />
               </folding>
@@ -409,7 +409,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32936078" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49946696" weight="0.32936078" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -417,8 +417,8 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="9" weight="0.32936078" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.36836404" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50053304" side_tool="true" visible="true" weight="0.36836404" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.49946696" visible="true" weight="0.36836404" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32936078" />
       <window_info anchor="bottom" id="Database Console" order="13" weight="0.32936078" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -716,8 +716,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/core/event_detail.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
-          <caret line="245" column="1" selection-start-line="245" selection-start-column="1" selection-end-line="257" selection-end-column="23" />
+        <state relative-caret-position="160">
+          <caret line="227" column="32" selection-start-line="227" selection-start-column="32" selection-end-line="227" selection-end-column="32" />
           <folding>
             <element signature="e#9355#9390#0#HTML" expanded="true" />
           </folding>
