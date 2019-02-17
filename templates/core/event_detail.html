@@ -186,6 +186,66 @@
 </section>
 {% endif %}
 
+<!--- КАРТЫ ------->
+{% if object.template.map_addr %}
+<section>
+    <div class="section-wrapper pt-0">
+        <div class="container">
+            <div class="section-header mb-3">
+                <h3>Место на карте</h3>
+            </div>
+            <div class="section-body">
+                <div id="map" style="width: 600px; height: 400px"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="http://api-maps.yandex.ru/2.0-stable/?load=package.standard&lang=ru-RU" type="text/javascript"></script>
+
+<script type='text/javascript'>
+    ymaps.ready(init);
+    function init(){
+        var geocoder = new ymaps.geocode(
+            // Строка с адресом, который нужно геокодировать
+            '{{ object.template.map_addr }}',
+            // требуемое количество результатов
+            { results: 1 }
+        );
+        // После того, как поиск вернул результат, вызывается callback-функция
+        geocoder.then(
+                function (res) {
+                    // координаты объекта
+                    var coord = res.geoObjects.get(0).geometry.getCoordinates();
+                    var map = new ymaps.Map('map', {
+                        // Центр карты - координаты первого элемента
+                        center: coord,
+                        // Коэффициент масштабирования
+                        zoom: 7,
+                        // включаем масштабирование карты колесом
+                        behaviors: ['default', 'scrollZoom'],
+                        controls: ['mapTools']
+                    });
+                    // Добавление метки на карту
+                    map.geoObjects.add(res.geoObjects.get(0));
+                    // устанавливаем максимально возможный коэффициент масштабирования - 1
+                    map.zoomRange.get(coord).then(function(range){
+                        map.setCenter(coord, range[1] - 1)
+                    });
+                    // Добавление стандартного набора кнопок
+                    map.controls.add('mapTools')
+                        // Добавление кнопки изменения масштаба
+                            .add('zoomControl')
+                        // Добавление списка типов карты
+                            .add('typeSelector');
+                }
+        );
+    }
+</script>
+{% endif %}
+<!----------------->
+
 {% if user.is_authenticated and not user.is_volunteer and member_list %}
 <section>
     <div class="section-wrapper pt-0">

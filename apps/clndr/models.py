@@ -30,6 +30,7 @@ class Template(TimestampsMixin):
     image = models.OneToOneField('clndr.TemplateImage', verbose_name='главное изображени',
                                  null=True, blank=True, related_name='+',
                                  on_delete=models.SET_NULL)
+    map_addr = models.CharField('Координаты YandexMaps', max_length=256, default='')
     file = models.FileField(upload_to='files/%Y/%m/%d', null=True, blank=True)   
     
     default_manager = models.Manager()
