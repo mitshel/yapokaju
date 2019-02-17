@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a4773a7f-2697-411f-91c3-5947052bd853" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/clndr/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/clndr/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/core/event_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/core/event_detail.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -120,11 +118,11 @@
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/core/event_detail.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="262">
-              <caret line="213" column="26" lean-forward="true" selection-start-line="213" selection-start-column="26" selection-end-line="213" selection-end-column="26" />
+            <state relative-caret-position="245">
+              <caret line="197" column="66" lean-forward="true" selection-start-line="197" selection-start-column="66" selection-end-line="197" selection-end-column="66" />
               <folding>
                 <element signature="e#9355#9390#0#HTML" expanded="true" />
               </folding>
@@ -132,7 +130,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apps/clndr/models.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="391">
@@ -247,8 +245,8 @@
         <option value="$PROJECT_DIR$/apps/account/forms.py" />
         <option value="$PROJECT_DIR$/templates/base.html" />
         <option value="$PROJECT_DIR$/templates/account/profile.html" />
-        <option value="$PROJECT_DIR$/templates/core/event_detail.html" />
         <option value="$PROJECT_DIR$/apps/clndr/models.py" />
+        <option value="$PROJECT_DIR$/templates/core/event_detail.html" />
       </list>
     </option>
   </component>
@@ -411,7 +409,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32936078" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32936078" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -420,7 +418,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.17118093" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.36836404" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32936078" />
       <window_info anchor="bottom" id="Database Console" order="13" weight="0.32936078" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -709,20 +707,20 @@
     <entry file="file://$PROJECT_DIR$/templates/account/event_detail.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/core/event_detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="213" column="26" lean-forward="true" selection-start-line="213" selection-start-column="26" selection-end-line="213" selection-end-column="26" />
-          <folding>
-            <element signature="e#9355#9390#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/apps/clndr/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="32" column="71" selection-start-line="32" selection-start-column="71" selection-end-line="32" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/core/event_detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="245">
+          <caret line="197" column="66" lean-forward="true" selection-start-line="197" selection-start-column="66" selection-end-line="197" selection-end-column="66" />
+          <folding>
+            <element signature="e#9355#9390#0#HTML" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
