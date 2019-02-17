@@ -202,7 +202,7 @@
     </div>
 </section>
 
-<script src="http://api-maps.yandex.ru/2.0-stable/?load=package.standard&lang=ru-RU" type="text/javascript"></script>
+<script src="https://api-maps.yandex.ru/2.1/?apikey=ae885af8-10d8-4d36-ab58-239b8a1940b0&lang=ru_RU" type="text/javascript"></script>
 
 <script type='text/javascript'>
     ymaps.ready(init);
@@ -217,28 +217,45 @@
         geocoder.then(
                 function (res) {
                     // координаты объекта
-                    var coord = res.geoObjects.get(0).geometry.getCoordinates();
+                    var firstGeoObject = res.geoObjects.get(0)
+                    var coord = firstGeoObject.geometry.getCoordinates();
+                    var bounds = firstGeoObject.properties.get('boundedBy');
+
                     var map = new ymaps.Map('map', {
                         // Центр карты - координаты первого элемента
                         center: coord,
                         // Коэффициент масштабирования
-                        zoom: 7,
+                        zoom: 9,
                         // включаем масштабирование карты колесом
-                        behaviors: ['default', 'scrollZoom'],
-                        controls: ['mapTools']
+                        //behaviors: ['default', 'scrollZoom'],
+                        //controls: ['mapTools']
                     });
-                    // Добавление метки на карту
-                    map.geoObjects.add(res.geoObjects.get(0));
-                    // устанавливаем максимально возможный коэффициент масштабирования - 1
-                    map.zoomRange.get(coord).then(function(range){
-                        map.setCenter(coord, range[1] - 1)
+
+                    firstGeoObject.options.set('preset', 'islands#darkBlueDotIconWithCaption');
+                    // Получаем строку с адресом и выводим в иконке геообъекта.
+                    firstGeoObject.properties.set('iconCaption', firstGeoObject.getAddressLine());
+
+                    // Добавляем первый найденный геообъект на карту.
+                    map.geoObjects.add(firstGeoObject);
+                    // Масштабируем карту на область видимости геообъекта.
+                    map.setBounds(bounds, {
+                        // Проверяем наличие тайлов на данном масштабе.
+                        checkZoomRange: true
                     });
-                    // Добавление стандартного набора кнопок
-                    map.controls.add('mapTools')
-                        // Добавление кнопки изменения масштаба
-                            .add('zoomControl')
-                        // Добавление списка типов карты
-                            .add('typeSelector');
+
+                    /**
+                     * Если нужно добавить по найденным геокодером координатам метку со своими стилями и контентом балуна, создаем новую метку по координатам найденной и добавляем ее на карту вместо найденной.
+                     */
+                    /**
+                     var myPlacemark = new ymaps.Placemark(coords, {
+                     iconContent: 'моя метка',
+                     balloonContent: 'Содержимое балуна <strong>моей метки</strong>'
+                     }, {
+                     preset: 'islands#violetStretchyIcon'
+                     });
+
+                     myMap.geoObjects.add(myPlacemark);
+                     */
                 }
         );
     }
