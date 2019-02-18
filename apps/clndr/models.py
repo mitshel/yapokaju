@@ -80,6 +80,26 @@ class EventManager(models.Manager):
 
         return queryset
 
+    def get_archive_queryset(self, today=None):
+        queryset = super(EventManager, self).get_queryset()
+
+        if not today:
+            today = timezone.now()
+
+        datetime_queryset = EventDatetime.objects \
+            .filter(
+                Q(event=OuterRef('pk')),
+                Q(active=True)) \
+            .values('datetime') \
+            .order_by('datetime')
+        queryset = queryset.annotate(datetime=Subquery(datetime_queryset[:1])) \
+            .select_related('template') \
+            .prefetch_related('template__images') \
+            .filter(datetime__isnull=False) \
+            .order_by('datetime', '-id')
+
+        return queryset
+
 
 class Event(TimestampsMixin):
     time_by_agreement = models.BooleanField('время по договоренности', default=False)

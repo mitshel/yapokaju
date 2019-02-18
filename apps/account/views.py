@@ -30,8 +30,10 @@ class ProfileView(LoginRequiredMixin, TemplateView):
     def get_context_data(self, **kwargs):
         today = timezone.now()
         member_list = self.request.user.members.filter(datetime__datetime__gte=today)
+        member_list_archive = self.request.user.members.filter(datetime__datetime__lt=today)
         self.extra_context = {
-            'member_list': member_list
+            'member_list': member_list,
+            'member_list_archive': member_list_archive
         }
 
         return super(ProfileView, self).get_context_data(**kwargs)

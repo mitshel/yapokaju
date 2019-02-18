@@ -108,7 +108,8 @@ class EventDetailView(SingleObjectMixin, MultiFormsView):
     template_name = 'core/event_detail.html'
     extra_context = {}
 
-    queryset = Event.objects.get_custom_queryset()
+    #queryset = Event.objects.get_custom_queryset()
+    queryset = Event.objects.get_archive_queryset()
 
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()
@@ -139,6 +140,7 @@ class EventDetailView(SingleObjectMixin, MultiFormsView):
 
         context_data['feedback_list'] = EventFeedback.objects \
             .filter(Q(event=self.object), Q(show=True) | Q(show=False, user_id=self.request.user.id))
+        context_data['now'] = timezone.now()
                  
         return context_data
 
