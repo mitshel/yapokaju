@@ -171,17 +171,11 @@ MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/2.1/topics/email/#smtp-backend
 
 EMAIL_HOST = "smtp.beget.com"
-
 EMAIL_HOST_USER = "no-reply@yapokaju.ru"
-
-EMAIL_HOST_PASSWORD = "N5*iPxoX"
-
+EMAIL_HOST_PASSWORD = "xxxxxx"
 EMAIL_PORT = 465
-
 EMAIL_USE_SSL = True
-
 SERVER_EMAIL = "no-reply@yapokaju.ru"
-
 DEFAULT_FROM_EMAIL = "no-reply@yapokaju.ru"
 
 
